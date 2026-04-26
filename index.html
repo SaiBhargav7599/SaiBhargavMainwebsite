@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sai Bhargav — Game Designer</title>
+<meta name="description" content="Sai Bhargav — Game Designer. MA Game Design. Unity · Unreal · Level Design.">
+<link rel="stylesheet" href="assets/shared.css">
+<style>
+/* HERO */
+#home{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:140px 52px 80px;overflow:hidden;position:relative;z-index:1}
+.hero-inner{text-align:center;position:relative;max-width:900px}
+.hero-tag{font-family:'Space Mono',monospace;font-size:.68rem;letter-spacing:4px;color:var(--c);text-transform:uppercase;margin-bottom:22px;display:block;opacity:0;animation:fu .8s .2s forwards}
+.hero-name{font-family:'Bebas Neue',sans-serif;font-size:clamp(5rem,15vw,14rem);line-height:.84;letter-spacing:-2px;position:relative;background:linear-gradient(135deg,#fff 0%,var(--c) 48%,var(--c3) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 46px rgba(0,245,255,.28));opacity:0;animation:fu .8s .4s forwards}
+.hero-name::before,.hero-name::after{content:attr(data-t);position:absolute;inset:0;background:inherit;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero-name::before{animation:g1 5s infinite;clip-path:polygon(0 0,100% 0,100% 33%,0 33%)}
+.hero-name::after{animation:g2 5s infinite;clip-path:polygon(0 66%,100% 66%,100% 100%,0 100%)}
+.hero-sub-t{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.5rem,4vw,3.2rem);letter-spacing:12px;color:var(--dim);margin-top:12px;opacity:0;animation:fu .8s .6s forwards}
+.hero-desc{margin:24px auto 0;font-size:1.02rem;color:var(--dim);max-width:500px;line-height:1.9;opacity:0;animation:fu .8s .8s forwards}
+.hero-ctas{margin-top:44px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap;opacity:0;animation:fu .8s 1s forwards}
+.hero-soc{position:absolute;left:-126px;top:50%;transform:translateY(-50%) rotate(-90deg);display:flex;gap:28px;opacity:0;animation:fi 1s 1.3s forwards}
+.hero-soc a{font-family:'Space Mono',monospace;font-size:.56rem;letter-spacing:2px;color:var(--dim);text-transform:uppercase;transition:color .3s}
+.hero-soc a:hover{color:var(--c)}
+.scroll-hint{position:absolute;bottom:-80px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:9px;opacity:0;animation:fi 1s 1.6s forwards}
+.scroll-hint span{font-family:'Space Mono',monospace;font-size:.56rem;letter-spacing:2px;color:var(--dim)}
+.scroll-line{width:1px;height:54px;background:linear-gradient(to bottom,var(--c),transparent);animation:sp 2s infinite}
+
+/* ABOUT */
+#about .inner{display:grid;grid-template-columns:1fr 1.08fr;gap:72px;align-items:start}
+.about-text p{font-size:1.02rem;color:var(--dim);line-height:1.9;margin-bottom:13px}
+.tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:18px}
+.tag{padding:5px 13px;border:1px solid var(--bdr);font-family:'Space Mono',monospace;font-size:.58rem;color:var(--dim);letter-spacing:1px;clip-path:polygon(4px 0%,100% 0%,calc(100% - 4px) 100%,0% 100%);transition:all .3s}
+.tag:hover{border-color:var(--c);color:var(--c);background:rgba(0,245,255,.05)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:28px}
+.stat{border:1px solid var(--bdr);padding:18px;background:var(--card);clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);transition:border-color .3s,transform .3s}
+.stat:hover{border-color:var(--c);transform:translateY(-4px)}
+.stat-n{font-family:'Bebas Neue',sans-serif;font-size:2.6rem;color:var(--c);line-height:1}
+.stat-l{font-size:.76rem;color:var(--dim);letter-spacing:1px;margin-top:3px}
+/* exp card */
+.exp-card{perspective:900px}
+.exp-card-inner{padding:40px 32px;background:var(--card);border:1px solid var(--bdr);transform-style:preserve-3d;transition:transform .12s;position:relative}
+.exp-card-inner::before{content:'';position:absolute;inset:-1px;z-index:-1;background:linear-gradient(135deg,var(--c),transparent 44%,var(--c3));opacity:.2}
+.exp-item{margin-bottom:24px;padding-bottom:24px;border-bottom:1px solid var(--bdr)}
+.exp-item:last-child{border:none;margin:0;padding:0}
+.exp-role{font-family:'Bebas Neue',sans-serif;font-size:1.28rem;letter-spacing:2px;color:#fff}
+.exp-co{font-family:'Space Mono',monospace;font-size:.64rem;color:var(--c);margin-top:3px}
+.exp-per{font-size:.82rem;color:var(--dim);margin-top:3px}
+
+/* PORTFOLIO GRID */
+#portfolio .ph{text-align:center;margin-bottom:60px}
+.games{display:grid;grid-template-columns:repeat(2,1fr);gap:2px}
+.gc{position:relative;overflow:hidden;background:var(--card);border:1px solid var(--bdr);cursor:pointer;transform-style:preserve-3d;transition:border-color .4s,transform .4s,box-shadow .4s}
+.gc:hover{border-color:var(--c);transform:translateY(-7px) scale(1.01);box-shadow:var(--glow)}
+.gc.s2{grid-column:span 2}
+.gt{width:100%;padding-top:48%;position:relative;overflow:hidden}
+.gt-bg{position:absolute;inset:0;transition:transform .6s;background-size:cover;background-position:center}
+.gc:hover .gt-bg{transform:scale(1.07)}
+.gt-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(2,4,8,.97) 0%,rgba(2,4,8,.18) 55%,transparent 100%)}
+.gt-n{position:absolute;top:14px;left:14px;font-family:'Bebas Neue',sans-serif;font-size:5rem;color:rgba(255,255,255,.05);line-height:1;z-index:1}
+.gt-b{position:absolute;top:14px;right:14px;padding:4px 11px;background:rgba(0,245,255,.08);border:1px solid var(--c);font-family:'Space Mono',monospace;font-size:.56rem;color:var(--c);letter-spacing:1px;z-index:2}
+.gt-yt{position:absolute;bottom:13px;left:13px;z-index:3}
+.yt-pill{padding:4px 12px;background:rgba(255,0,0,.72);font-family:'Space Mono',monospace;font-size:.54rem;color:#fff;letter-spacing:1px;border-radius:2px;text-decoration:none;transition:background .3s}
+.yt-pill:hover{background:rgba(255,0,0,1)}
+.gi{padding:24px}
+.gi-genre{font-family:'Space Mono',monospace;font-size:.58rem;color:var(--c2);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px}
+.gi-name{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:2px;color:#fff;line-height:1.1;margin-bottom:10px}
+.gi-desc{font-size:.87rem;color:var(--dim);line-height:1.7;margin-bottom:16px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.gi-meta{display:flex;gap:16px;align-items:center}
+.gmi{font-family:'Space Mono',monospace;font-size:.56rem;color:var(--dim);letter-spacing:1px}
+.gmi span{color:var(--c);display:block;font-size:.68rem;margin-bottom:2px}
+.garr{margin-left:auto;width:36px;height:36px;border:1px solid var(--bdr);display:flex;align-items:center;justify-content:center;clip-path:polygon(5px 0%,100% 0%,calc(100% - 5px) 100%,0% 100%);transition:all .3s;color:var(--dim);font-size:.95rem}
+.gc:hover .garr{background:var(--c);color:var(--bg);border-color:var(--c)}
+
+/* CINEMATICS */
+#cinematics .cg{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:52px}
+.vc{border:1px solid var(--bdr);background:var(--card);overflow:hidden;transition:border-color .3s,transform .3s}
+.vc:hover{border-color:var(--c);transform:translateY(-4px);box-shadow:var(--glow)}
+.vc.big{grid-column:span 2}
+.vt{width:100%;padding-top:56.25%;position:relative}
+.vt iframe{position:absolute;inset:0;width:100%;height:100%;border:none}
+.vi{padding:20px}
+.vi-t{font-family:'Bebas Neue',sans-serif;font-size:1.45rem;letter-spacing:2px;margin-bottom:5px}
+.vi-s{font-size:.84rem;color:var(--dim)}
+
+/* CERTS */
+.cert-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;margin-top:52px}
+.cert-card{padding:26px;background:var(--card);border:1px solid var(--bdr);clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%);transition:all .32s;position:relative;overflow:hidden}
+.cert-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,var(--c),var(--c3));transform:scaleX(0);transition:transform .4s;transform-origin:left}
+.cert-card:hover{border-color:var(--c);transform:translateY(-4px);box-shadow:var(--glow)}
+.cert-card:hover::before{transform:scaleX(1)}
+.cert-icon{font-size:2.2rem;margin-bottom:12px}
+.cert-name{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:2px;color:#fff;margin-bottom:6px}
+.cert-iss{font-family:'Space Mono',monospace;font-size:.6rem;color:var(--c);letter-spacing:1px;margin-bottom:8px}
+.cert-desc{font-size:.84rem;color:var(--dim);line-height:1.65}
+.cert-link{display:inline-block;margin-top:10px;padding:4px 13px;border:1px solid var(--c2);font-family:'Space Mono',monospace;font-size:.56rem;color:var(--c2);letter-spacing:1px;transition:all .3s}
+.cert-link:hover{background:var(--c2);color:var(--bg)}
+
+/* 3D ART */
+.art-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;margin-top:52px}
+.art-item{position:relative;overflow:hidden;aspect-ratio:1;background:var(--card);border:1px solid var(--bdr);cursor:zoom-in;transition:all .4s}
+.art-item:hover{border-color:var(--c);z-index:2;transform:scale(1.03)}
+.art-thumb{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s;position:absolute;inset:0}
+.art-item:hover .art-thumb{transform:scale(1.1)}
+.art-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(2,4,8,.92),transparent);opacity:0;transition:opacity .3s;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:14px;text-align:center}
+.art-item:hover .art-ov{opacity:1}
+.art-label{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:2px;color:#fff;margin-bottom:4px}
+.art-sub{font-family:'Space Mono',monospace;font-size:.54rem;color:var(--c);letter-spacing:1px}
+/* fallback gradients */
+.a1{background:linear-gradient(135deg,#0a1a2a,#1a3d5a)}
+.a2{background:linear-gradient(135deg,#1a0a0a,#3d1a1a)}
+.a3{background:linear-gradient(135deg,#0a1a0a,#1a3d1a)}
+.a4{background:linear-gradient(135deg,#1a0a1a,#2a1a3d)}
+.a5{background:linear-gradient(135deg,#001a20,#1a0a0a)}
+.a6{background:linear-gradient(135deg,#1a1000,#3d2800)}
+.a7{background:linear-gradient(135deg,#0a0a1a,#001a3d)}
+.a8{background:linear-gradient(135deg,#001810,#183018)}
+
+/* CONTACT */
+#contact .cg{display:grid;grid-template-columns:1fr 1fr;gap:52px;margin-top:52px}
+.ci{margin-bottom:24px}
+.ci-l{font-family:'Space Mono',monospace;font-size:.57rem;color:var(--dim);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px}
+.ci-v{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:2px;color:var(--c)}
+.cl{display:flex;flex-direction:column;gap:10px;margin-top:24px}
+.clink{padding:11px 18px;border:1px solid var(--bdr);display:flex;align-items:center;gap:10px;color:var(--txt);font-family:'Space Mono',monospace;font-size:.64rem;letter-spacing:1px;transition:all .3s;clip-path:polygon(5px 0%,100% 0%,calc(100% - 5px) 100%,0% 100%)}
+.clink:hover{border-color:var(--c);color:var(--c);background:rgba(0,245,255,.05);transform:translateX(7px)}
+
+/* MODAL */
+.modal-ov{position:fixed;inset:0;z-index:700;background:rgba(2,4,8,.96);backdrop-filter:blur(22px);display:flex;align-items:center;justify-content:center;padding:32px;opacity:0;pointer-events:none;transition:opacity .4s}
+.modal-ov.open{opacity:1;pointer-events:all}
+.modal-box{max-width:860px;width:100%;max-height:90vh;overflow-y:auto;background:var(--bg2);border:1px solid var(--bdr);transform:translateY(26px);transition:transform .4s;scrollbar-width:thin;scrollbar-color:var(--c) transparent}
+.modal-ov.open .modal-box{transform:translateY(0)}
+.modal-hero{width:100%;padding-top:40%;position:relative;overflow:hidden;background-size:cover;background-position:center}
+.modal-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.55)}
+.mhov{position:absolute;inset:0;background:linear-gradient(to top,var(--bg2) 0%,transparent 60%)}
+.mx{position:absolute;top:14px;right:14px;z-index:10;width:42px;height:42px;background:rgba(2,4,8,.85);border:1px solid var(--bdr);color:var(--txt);font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s}
+.mx:hover{border-color:var(--c2);color:var(--c2)}
+.mb{padding:32px}
+.mtag{display:inline-block;padding:4px 13px;border:1px solid var(--c2);font-family:'Space Mono',monospace;font-size:.56rem;color:var(--c2);letter-spacing:2px;margin-bottom:12px}
+.mt{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.9rem,5vw,3.4rem);letter-spacing:3px;line-height:.95;margin-bottom:7px}
+.mr{font-family:'Space Mono',monospace;font-size:.64rem;color:var(--c);letter-spacing:2px;margin-bottom:24px}
+.mspecs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:24px}
+.ms{padding:12px;background:rgba(0,245,255,.03);border:1px solid var(--bdr);text-align:center}
+.msk{font-family:'Space Mono',monospace;font-size:.5rem;color:var(--dim);letter-spacing:2px;text-transform:uppercase;margin-bottom:5px}
+.msv{font-family:'Bebas Neue',sans-serif;font-size:1.15rem;color:var(--c);letter-spacing:2px}
+.mdesc{font-size:.97rem;line-height:1.9;color:var(--dim);margin-bottom:24px}
+.mmh{font-family:'Bebas Neue',sans-serif;font-size:1.35rem;letter-spacing:3px;color:#fff;margin-bottom:12px;display:flex;align-items:center;gap:12px}
+.mmh::after{content:'';flex:1;height:1px;background:var(--bdr)}
+.ml{display:flex;flex-direction:column;gap:11px;margin-bottom:24px}
+.mech{display:flex;gap:12px;padding:12px;background:rgba(0,245,255,.03);border-left:2px solid var(--c)}
+.mech-i{font-size:1.2rem;flex-shrink:0}
+.mech-n{font-family:'Bebas Neue',sans-serif;font-size:.98rem;letter-spacing:2px;color:#fff;margin-bottom:3px}
+.mech-d{font-size:.82rem;color:var(--dim);line-height:1.55}
+.mlinks{display:flex;gap:10px;flex-wrap:wrap;padding-top:20px;border-top:1px solid var(--bdr)}
+
+@media(max-width:860px){
+  #about .inner{grid-template-columns:1fr;gap:36px}
+  .games{grid-template-columns:1fr}.gc.s2{grid-column:span 1}
+  #cinematics .cg{grid-template-columns:1fr}.vc.big{grid-column:span 1}
+  .art-grid{grid-template-columns:repeat(2,1fr)}
+  #contact .cg{grid-template-columns:1fr}
+  .hero-soc{display:none}
+  #home{padding:120px 22px 56px}
+}
+@media(max-width:540px){.art-grid{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<div id="cur"></div><div id="crng"></div>
+<canvas id="bgc"></canvas>
+<div id="pt"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">SB</a>
+  <ul class="nav-links">
+    <li><a href="#home"  data-s="home" class="act">Home</a></li>
+    <li><a href="pages/about.html">About</a></li>
+    <li><a href="pages/cv.html">CV</a></li>
+    <li><a href="https://saibhargav7599.github.io/operation-blackout/#goal" target="_blank">Level Design</a></li>
+    <li><a href="pages/projects.html">Projects</a></li>
+    <li><a href="pages/certifications.html">Certifications</a></li>
+    <li><a href="pages/cinematics.html">Cinematics</a></li>
+    <li><a href="pages/artworks.html">3D Artworks</a></li>
+  </ul>
+  <button class="ham" id="ham"><span></span><span></span><span></span></button>
+</nav>
+<div id="mobnav">
+  <a href="#home">Home</a><a href="pages/about.html">About</a><a href="pages/cv.html">CV</a>
+  <a href="https://saibhargav7599.github.io/operation-blackout/#goal" target="_blank">Level Design</a>
+  <a href="pages/projects.html">Projects</a><a href="pages/certifications.html">Certifications</a>
+  <a href="pages/cinematics.html">Cinematics</a><a href="pages/artworks.html">3D Artworks</a>
+</div>
+
+<main>
+
+<!-- ═══ HERO ═══ -->
+<section id="home" class="s">
+  <div class="hero-inner">
+    <div class="hero-soc">
+      <a href="https://www.linkedin.com/in/saibhargav7599" target="_blank">LinkedIn</a>
+      <a href="http://sai_bhargav.artstation.com" target="_blank">ArtStation</a>
+      <a href="https://youtu.be/WuV2wXUhXF0" target="_blank">YouTube</a>
+    </div>
+    <span class="hero-tag">// Game Designer Portfolio</span>
+    <h1 class="hero-name" data-t="SAI BHARGAV">SAI BHARGAV</h1>
+    <h2 class="hero-sub-t">Game Designer</h2>
+    <p class="hero-desc">A Master's degree and proven industry experience in building standout gameplay — crafting captivating, immersive worlds from concept to reality.</p>
+    <div class="hero-ctas">
+      <a href="#portfolio" class="btn btn-p">View Portfolio</a>
+      <a href="#contact" class="btn btn-g">Get In Touch</a>
+    </div>
+    <div class="scroll-hint"><span>Scroll</span><div class="scroll-line"></div></div>
+  </div>
+</section>
+
+<!-- ═══ ABOUT ═══ -->
+<section id="about" class="s">
+  <div class="wrap">
+    <div class="inner">
+      <div class="rev">
+        <div class="sec-label">About Me</div>
+        <h2 class="sec-title">THE DESIGNER<br>BEHIND THE GAME</h2>
+        <div class="about-text" style="margin-top:20px">
+          <p>Dynamic Game Designer with over two years of experience, specializing in balancing gameplay mechanics, crafting immersive levels, and leveraging analytics to enhance player engagement and retention.</p>
+          <p>Successfully contributed to two titles achieving <strong style="color:var(--c)">50k+ downloads</strong> on Google Play Store. Skilled in VR/AR development, combining artistic vision with practical execution.</p>
+          <p>I work to evoke emotion and strive for perfection — collaborating well with others to generate and execute ideas under tight deadlines.</p>
+        </div>
+        <div style="margin-top:14px">
+          <a href="https://www.linkedin.com/in/saibhargav7599" target="_blank" style="font-family:'Space Mono',monospace;font-size:.62rem;color:var(--c);letter-spacing:1px;border-bottom:1px solid var(--bdr2);padding-bottom:2px">🔗 linkedin.com/in/saibhargav7599</a>
+        </div>
+        <div class="tags">
+          <span class="tag">Unity 3D</span><span class="tag">Unreal Engine</span>
+          <span class="tag">Gameplay Mechanics</span><span class="tag">Prototyping</span>
+          <span class="tag">Level Design</span><span class="tag">Maya</span>
+          <span class="tag">Adobe Premiere Pro</span><span class="tag">VR/AR</span>
+        </div>
+        <div class="stats">
+          <div class="stat rev d1"><div class="stat-n">6+</div><div class="stat-l">Games Designed</div></div>
+          <div class="stat rev d2"><div class="stat-n">2+</div><div class="stat-l">Years Experience</div></div>
+          <div class="stat rev d3"><div class="stat-n">MA</div><div class="stat-l">Game Design</div></div>
+        </div>
+        <div style="margin-top:26px">
+          <a href="pages/about.html" class="btn btn-g btn-sm">Read Full Bio →</a>
+        </div>
+      </div>
+      <!-- Right — 3D tilt + real photo -->
+      <div class="rev-r d2">
+        <div class="exp-card" id="expc">
+          <div class="exp-card-inner" id="expi">
+            <!-- Profile photo -->
+            <div style="display:flex;align-items:center;gap:16px;margin-bottom:24px;padding-bottom:24px;border-bottom:1px solid var(--bdr)">
+              <img src="pages/mypicture1.jpeg" alt="Sai Bhargav"
+                style="width:80px;height:80px;border-radius:50%;object-fit:cover;border:2px solid var(--c);box-shadow:0 0 18px rgba(0,245,255,.3);flex-shrink:0"
+                onerror="this.style.display='none'">
+              <div>
+                <div style="font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:2px;color:#fff">SAI BHARGAV</div>
+                <div style="font-family:'Space Mono',monospace;font-size:.62rem;color:var(--c);margin-top:4px">// Game Designer</div>
+                <div style="font-size:.82rem;color:var(--dim);margin-top:3px">📍 United Kingdom</div>
+              </div>
+            </div>
+            <div class="exp-item">
+              <div class="exp-role">Game Designer</div>
+              <div class="exp-co">NeoVene Limited · Internship</div>
+              <div class="exp-per">Sep 2023 – Dec 2023 · UK · Remote</div>
+            </div>
+            <div class="exp-item">
+              <div class="exp-role">Level Designer</div>
+              <div class="exp-co">CYMAX Infotainment · Full-time</div>
+              <div class="exp-per">Nov 2021 – Jul 2022 · Hyderabad · On-site</div>
+            </div>
+            <div class="exp-item">
+              <div class="exp-role">Junior Game Designer</div>
+              <div class="exp-co">Flick Games Official · Full-time</div>
+              <div class="exp-per">May 2021 – Oct 2021 · Hyderabad · Remote</div>
+            </div>
+            <div style="margin-top:20px">
+              <div class="sec-label" style="margin-bottom:9px">Education</div>
+              <div class="exp-role" style="font-size:.96rem;margin-bottom:3px">MA Game Design (2022–2024)</div>
+              <div class="exp-per" style="margin-bottom:11px">Teesside University · Credits: 120/120</div>
+              <div class="exp-role" style="font-size:.96rem;margin-bottom:3px">Bachelor's in Multimedia (2017–2021)</div>
+              <div class="exp-per">Jawaharlal Nehru Technological University</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider s"></div>
+
+<!-- ═══ PORTFOLIO ═══ -->
+<section id="portfolio" class="s">
+  <div class="wrap">
+    <div class="ph rev">
+      <div class="sec-label" style="justify-content:center">My Work</div>
+      <h2 class="sec-title">PORTFOLIO</h2>
+    </div>
+    <div class="games">
+
+      <!-- 01 Hotel Luxe Inn -->
+      <div class="gc s2 rev" onclick="openM('hotel')">
+        <div class="gt">
+          <div class="gt-bg" style="background-image:url('pages/LuxeInn.png');background-color:#140228"></div>
+          <div class="gt-ov"></div><div class="gt-n">01</div><div class="gt-b">MASTER'S PROJECT</div>
+          <div class="gt-yt"><a href="https://youtu.be/xCHTsjbmJTY" target="_blank" onclick="event.stopPropagation()" class="yt-pill">▶ TRAILER</a></div>
+        </div>
+        <div class="gi">
+          <div class="gi-genre">Management Simulation · PC · 2024</div>
+          <div class="gi-name">HOTEL LUXE INN: MANAGER'S CHALLENGE</div>
+          <div class="gi-desc">A serious game putting you in the shoes of a busy hotel manager. Timed tasks across reservations, room service, kitchen management and dining — all about efficient time management and real hospitality skills.</div>
+          <div class="gi-meta">
+            <div class="gmi"><span>Year</span>2024</div><div class="gmi"><span>Platform</span>PC</div><div class="gmi"><span>Engine</span>Unity 3D</div>
+            <div class="garr">→</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 02 Evil Legacy -->
+      <div class="gc rev d1" onclick="openM('evil')">
+        <div class="gt">
+          <div class="gt-bg" style="background-image:url('pages/Evillegacy.png');background-color:#081508"></div>
+          <div class="gt-ov"></div><div class="gt-n">02</div><div class="gt-b">RATIONAL DESIGN</div>
+          <div class="gt-yt"><a href="https://youtu.be/Bc49S2FR3qk" target="_blank" onclick="event.stopPropagation()" class="yt-pill">▶ TRAILER</a></div>
+        </div>
+        <div class="gi">
+          <div class="gi-genre">FPS Fantasy Adventure · PC · 2023</div>
+          <div class="gi-name">EVIL LEGACY</div>
+          <div class="gi-desc">Fantasy FPS with magic, combat, and exploration. Battle corrupted forest creatures as a young wizard wielding four unique spells.</div>
+          <div class="gi-meta">
+            <div class="gmi"><span>Year</span>2023</div><div class="gmi"><span>Genre</span>FPS</div><div class="gmi"><span>Engine</span>Unreal</div>
+            <div class="garr">→</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 03 Escape Hunt -->
+      <div class="gc rev d2" onclick="openM('escape')">
+        <div class="gt">
+          <div class="gt-bg" style="background-image:url('pages/Escapehunt.png');background-color:#181800"></div>
+          <div class="gt-ov"></div><div class="gt-n">03</div><div class="gt-b">STEALTH ADVENTURE</div>
+          <div class="gt-yt"><a href="https://youtu.be/lqwcb-ts59o4" target="_blank" onclick="event.stopPropagation()" class="yt-pill">▶ TRAILER</a></div>
+        </div>
+        <div class="gi">
+          <div class="gi-genre">Stealth Adventure · PC · 2023</div>
+          <div class="gi-name">ESCAPE HUNT</div>
+          <div class="gi-desc">Play as a Box trapped in a guarded warehouse. Navigate vents, observe guard patterns, solve puzzles and escape using stealth and cunning.</div>
+          <div class="gi-meta">
+            <div class="gmi"><span>Year</span>2023</div><div class="gmi"><span>Role</span>Solo</div><div class="gmi"><span>Genre</span>Stealth</div>
+            <div class="garr">→</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 04 Dystopian -->
+      <div class="gc rev d1" onclick="openM('dystopian')">
+        <div class="gt">
+          <div class="gt-bg" style="background-image:url('pages/Dystopian.png');background-color:#080818"></div>
+          <div class="gt-ov"></div><div class="gt-n">04</div><div class="gt-b">GAME MECHANICS</div>
+          <div class="gt-yt"><a href="https://youtu.be/FyTiHAGFq24" target="_blank" onclick="event.stopPropagation()" class="yt-pill">▶ TRAILER</a></div>
+        </div>
+        <div class="gi">
+          <div class="gi-genre">Action TPS · PC · 2022</div>
+          <div class="gi-name">DYSTOPIAN</div>
+          <div class="gi-desc">TPS set in Exeter Cyber City 2055. Four innovative mechanics: Snail's Pace bullet-time, FLING object launching, Dual Jump + Fall Blast, and Laser Rifle.</div>
+          <div class="gi-meta">
+            <div class="gmi"><span>Year</span>2022</div><div class="gmi"><span>Setting</span>Sci-Fi</div><div class="gmi"><span>View</span>TPS</div>
+            <div class="garr">→</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 05 Hollyhill -->
+      <div class="gc rev d2" onclick="openM('hollyhill')">
+        <div class="gt">
+          <div class="gt-bg" style="background-image:url('pages/Missiondesign.png');background-color:#001810"></div>
+          <div class="gt-ov"></div><div class="gt-n">05</div><div class="gt-b">MISSION DESIGN</div>
+          <div class="gt-yt"><a href="https://youtu.be/CTgqu1qcPm8" target="_blank" onclick="event.stopPropagation()" class="yt-pill">▶ TRAILER</a></div>
+        </div>
+        <div class="gi">
+          <div class="gi-genre">Mission Design · PC · 2023</div>
+          <div class="gi-name">HOLLYHILL PENINSULA ISLAND</div>
+          <div class="gi-desc">Open-world mission design on a crafted island. Narrative-driven quests, world-building, and environmental storytelling.</div>
+          <div class="gi-meta">
+            <div class="gmi"><span>Year</span>2023</div><div class="gmi"><span>Focus</span>Mission</div><div class="gmi"><span>Type</span>Open</div>
+            <div class="garr">→</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 06 Persona -->
+      <div class="gc rev d3" onclick="openM('persona')">
+        <div class="gt">
+          <div class="gt-bg" style="background-image:url('pages/Persona.png');background-color:#180606"></div>
+          <div class="gt-ov"></div><div class="gt-n">06</div><div class="gt-b">LEAD DESIGNER</div>
+          <div class="gt-yt"><a href="https://youtu.be/4iclQtB6GZg" target="_blank" onclick="event.stopPropagation()" class="yt-pill">▶ TRAILER</a></div>
+        </div>
+        <div class="gi">
+          <div class="gi-genre">Visual Novel · PC · 2019</div>
+          <div class="gi-name">PERSONA</div>
+          <div class="gi-desc">Dark detective visual novel. A woman confesses to triple homicide — no bodies found. Navigate a twisting psychological investigation where your Fear is your killer.</div>
+          <div class="gi-meta">
+            <div class="gmi"><span>Year</span>2019</div><div class="gmi"><span>Genre</span>Visual Novel</div><div class="gmi"><span>Role</span>Lead</div>
+            <div class="garr">→</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div style="text-align:center;margin-top:44px" class="rev">
+      <a href="pages/projects.html" class="btn btn-g">View All Projects →</a>
+    </div>
+  </div>
+</section>
+
+<div class="divider s"></div>
+
+<!-- ═══ CINEMATICS ═══ -->
+<section id="cinematics" class="s">
+  <div class="wrap">
+    <div class="rev">
+      <div class="sec-label">Video Work</div>
+      <h2 class="sec-title">CINEMATICS</h2>
+      <p style="margin-top:13px;color:var(--dim);font-size:1rem;max-width:640px;line-height:1.8">Cinematic short films built in Unreal Engine — exploring particle systems, rigged asset integration, and Sequencer.</p>
+    </div>
+    <div class="cg">
+      <div class="vc big rev d1">
+        <div class="vt"><iframe src="https://www.youtube.com/embed/MtHFH9TKUNU" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" title="Turtles of the River"></iframe></div>
+        <div class="vi"><div class="vi-t">TURTLE'S OF THE RIVER</div><div class="vi-s">Cinematic Short Film · Unreal Engine · Particle Systems & Rigged Assets</div></div>
+      </div>
+      <div class="vc rev d2">
+        <div class="vt"><iframe src="https://www.youtube.com/embed/H4q071MfOUA" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" title="Tread"></iframe></div>
+        <div class="vi"><div class="vi-t">TREAD</div><div class="vi-s">Cinematic Short Film · Unreal Engine · Sequencer</div></div>
+      </div>
+      <div class="vc rev d3">
+        <div class="vt"><iframe src="https://www.youtube.com/embed/R0u9nKQDk5s" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" title="Drivers Paradise"></iframe></div>
+        <div class="vi"><div class="vi-t">DRIVERS PARADISE</div><div class="vi-s">Cinematic Short Film · Unreal Engine · Animation Integration</div></div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:32px" class="rev"><a href="pages/cinematics.html" class="btn btn-g btn-sm">View Full Cinematics Page →</a></div>
+  </div>
+</section>
+
+<div class="divider s"></div>
+
+<!-- ═══ CERTIFICATIONS ═══ -->
+<section id="certifications" class="s">
+  <div class="wrap">
+    <div class="rev"><div class="sec-label">Credentials</div><h2 class="sec-title">CERTIFICATIONS</h2></div>
+    <div class="cert-grid">
+      <div class="cert-card rev">
+        <div class="cert-icon">🎓</div>
+        <div class="cert-name">MA GAME DESIGN</div>
+        <div class="cert-iss">Teesside University · 2022–2024</div>
+        <div class="cert-desc">Master's with advanced practice. Credits: 120/120. Specialising in game mechanics, level design, and serious games.</div>
+      </div>
+      <div class="cert-card rev d1">
+        <div class="cert-icon">🖥️</div>
+        <div class="cert-name">BACHELOR'S IN MULTIMEDIA</div>
+        <div class="cert-iss">JNTUH, India · 2017–2021</div>
+        <div class="cert-desc">Bachelor's in Multimedia with Gaming specialisation covering game development, 3D art, and interactive media.</div>
+      </div>
+      <div class="cert-card rev d2">
+        <div class="cert-icon">🏆</div>
+        <div class="cert-name">LEVEL DESIGN MASTERY</div>
+        <div class="cert-iss">Bootcamp · Zamfir Stefan</div>
+        <div class="cert-desc">Advanced techniques in spatial design, player flow, and encounter design.</div>
+      </div>
+      <div class="cert-card rev d3">
+        <div class="cert-icon">💡</div>
+        <div class="cert-name">ENTERPRISE DESIGN THINKING</div>
+        <div class="cert-iss">IBM · Practitioner Certified</div>
+        <div class="cert-desc">Human-centered design principles applied to complex business challenges.</div>
+        <a href="https://www.credly.com/badges/22b0f77b-650d-498f-88ce-130d56663ffd/linked_in_profile" target="_blank" class="cert-link">View Certificate →</a>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:32px" class="rev"><a href="pages/certifications.html" class="btn btn-g btn-sm">View All Certifications →</a></div>
+  </div>
+</section>
+
+<div class="divider s"></div>
+
+<!-- ═══ 3D ART ═══ -->
+<section id="art" class="s">
+  <div class="wrap">
+    <div class="rev"><div class="sec-label">Visual Work</div><h2 class="sec-title">3D ART WORKS</h2></div>
+    <div class="art-grid">
+      <div class="art-item rev a1"><img class="art-thumb" src="pages/Artwork 1.png" alt="Sci-Fi Medkit" onerror="this.style.display='none'"><div class="art-ov"><div class="art-label">SCI-FI MEDKIT</div><div class="art-sub">3D PROP</div></div></div>
+      <div class="art-item rev d1 a2"><img class="art-thumb" src="pages/Artwork 2.png" alt="Vintage Mini Truck" onerror="this.style.display='none'"><div class="art-ov"><div class="art-label">VINTAGE MINI TRUCK</div><div class="art-sub">3D VEHICLE</div></div></div>
+      <div class="art-item rev d2 a3"><img class="art-thumb" src="pages/Artwork 3.png" alt="Barricade" onerror="this.style.display='none'"><div class="art-ov"><div class="art-label">BARRICADE</div><div class="art-sub">3D PROP</div></div></div>
+      <div class="art-item rev d3 a4"><img class="art-thumb" src="pages/Artwork 4.png" alt="Container" onerror="this.style.display='none'"><div class="art-ov"><div class="art-label">CONTAINER</div><div class="art-sub">3D PROP</div></div></div>
+      <div class="art-item rev d1 a5"><img class="art-thumb" src="pages/Artwork 5.png" alt="Crate" onerror="this.style.display='none'"><div class="art-ov"><div class="art-label">CRATE</div><div class="art-sub">3D PROP</div></div></div>
+      <div class="art-item rev d2 a6"><img class="art-thumb" src="pages/Artwork 6.png" alt="Grenade" onerror="this.style.display='none'"><div class="art-ov"><div class="art-label">GRENADE</div><div class="art-sub">3D WEAPON PROP</div></div></div>
+      <div class="art-item rev d3 a7"><img class="art-thumb" src="pages/Artwork 7.png" alt="Crossbow" onerror="this.style.display='none'"><div class="art-ov"><div class="art-label">CROSSBOW</div><div class="art-sub">3D WEAPON</div></div></div>
+      <div class="art-item rev a8"><img class="art-thumb" src="pages/Artwork 8.png" alt="Vintage Car" onerror="this.style.display='none'"><div class="art-ov"><div class="art-label">VINTAGE CAR</div><div class="art-sub">3D VEHICLE</div></div></div>
+    </div>
+    <div style="text-align:center;margin-top:32px" class="rev">
+      <a href="http://sai_bhargav.artstation.com" target="_blank" class="btn btn-g btn-sm">View on ArtStation →</a>&nbsp;&nbsp;
+      <a href="pages/artworks.html" class="btn btn-g btn-sm">Full Gallery →</a>
+    </div>
+  </div>
+</section>
+
+<div class="divider s"></div>
+
+<!-- ═══ CONTACT ═══ -->
+<section id="contact" class="s">
+  <div class="wrap">
+    <div class="rev">
+      <div class="sec-label">Let's Play</div>
+      <h2 class="sec-title">GET IN TOUCH</h2>
+      <p style="margin-top:12px;color:var(--dim);font-size:1.02rem">Feel free to contact me for future work and partnerships. Let's build something extraordinary together.</p>
+    </div>
+    <div class="cg">
+      <div class="rev">
+        <div class="ci"><div class="ci-l">Location</div><div class="ci-v">United Kingdom</div></div>
+        <div class="ci"><div class="ci-l">Email</div><div style="font-size:.95rem;color:var(--txt);margin-top:4px">saibhargav7599@gmail.com</div></div>
+        <div class="ci"><div class="ci-l">Available for</div><div style="font-size:1rem;color:var(--txt);margin-top:4px">Game Design · Level Design<br>Prototyping · Collaboration</div></div>
+        <div class="cl">
+          <a href="https://www.linkedin.com/in/saibhargav7599" target="_blank" class="clink">🔗 LinkedIn Profile</a>
+          <a href="http://sai_bhargav.artstation.com" target="_blank" class="clink">🎨 ArtStation Portfolio</a>
+          <a href="https://youtu.be/WuV2wXUhXF0" target="_blank" class="clink">▶ YouTube Channel</a>
+          <a href="https://saibhargav7599.github.io/operation-blackout/#goal" target="_blank" class="clink">🗺️ Level Design Portfolio</a>
+          <a href="https://saibhargav7599.wixsite.com/gamedesign" target="_blank" class="clink">🌐 Original Portfolio</a>
+        </div>
+      </div>
+      <div class="rev d2">
+        <div class="sec-label" style="margin-bottom:16px">Featured At</div>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div style="padding:20px;background:var(--card);border:1px solid var(--bdr);transition:border-color .3s" onmouseover="this.style.borderColor='var(--c)'" onmouseout="this.style.borderColor='var(--bdr)'">
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:1.15rem;letter-spacing:2px;color:#fff;margin-bottom:3px">EXPO TEES — TEESSIDE UNIVERSITY</div>
+            <div style="font-family:'Space Mono',monospace;font-size:.6rem;color:var(--c);margin-bottom:7px">May 2024</div>
+            <div style="font-size:.88rem;color:var(--dim)">Featured capstone projects at Teesside University end-of-year showcase.</div>
+          </div>
+          <div style="padding:20px;background:var(--card);border:1px solid var(--bdr);transition:border-color .3s" onmouseover="this.style.borderColor='var(--c)'" onmouseout="this.style.borderColor='var(--bdr)'">
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:1.15rem;letter-spacing:2px;color:#fff;margin-bottom:3px">NASSCOM / IGDC</div>
+            <div style="font-family:'Space Mono',monospace;font-size:.6rem;color:var(--c);margin-bottom:7px">December 2019</div>
+            <div style="font-size:.88rem;color:var(--dim)">Showcased the visual novel game "PERSONA" at IGDC Nasscom, Hyderabad.</div>
+          </div>
+          <div style="padding:16px;background:rgba(0,245,255,.04);border:1px solid var(--bdr2)">
+            <div style="font-family:'Space Mono',monospace;font-size:.58rem;color:var(--c);letter-spacing:2px;margin-bottom:7px">KEY ACHIEVEMENT</div>
+            <div style="font-size:.94rem;color:var(--txt)">Contributed to two titles surpassing <strong style="color:var(--c)">50,000+ downloads</strong> on Google Play Store.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="f-copy">© 2024 SAI BHARGAV. ALL RIGHTS RESERVED.</div>
+  <div class="f-logo">SB</div>
+  <div class="f-copy">GAME DESIGNER</div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-ov" id="mov" onclick="if(event.target===this)closeM()">
+  <div class="modal-box">
+    <div class="modal-hero" id="mhero"><div class="mhov"></div><button class="mx" onclick="closeM()">✕</button></div>
+    <div class="mb">
+      <div class="mtag" id="mtag"></div>
+      <h2 class="mt" id="mt"></h2>
+      <div class="mr" id="mr"></div>
+      <div class="mspecs" id="msp"></div>
+      <p class="mdesc" id="mdesc"></p>
+      <div id="mmechs"></div>
+      <div class="mlinks" id="mlnks"></div>
+    </div>
+  </div>
+</div>
+
+<script src="assets/shared.js"></script>
+<script>
+/* 3D tilt exp card */
+const ec=document.getElementById('expc'),ei=document.getElementById('expi');
+if(ec&&ei){ec.addEventListener('mousemove',e=>{const r=ec.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;ei.style.transform=`rotateY(${x*12}deg) rotateX(${-y*12}deg)`;});ec.addEventListener('mouseleave',()=>{ei.style.transform='';});}
+/* game card tilt */
+document.querySelectorAll('.gc').forEach(g=>{g.addEventListener('mousemove',e=>{const r=g.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;g.style.transform=`translateY(-7px) scale(1.01) rotateY(${x*5}deg) rotateX(${-y*5}deg)`;});g.addEventListener('mouseleave',()=>{g.style.transform='';});});
+/* nav active */
+const ss=['home','about','portfolio','cinematics','certifications','art','contact'];
+const nobs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){document.querySelectorAll('.nav-links a[data-s]').forEach(a=>a.classList.remove('act'));const l=document.querySelector(`.nav-links a[data-s="${x.target.id}"]`);if(l)l.classList.add('act');}});},{threshold:.35});
+ss.forEach(id=>{const el=document.getElementById(id);if(el)nobs.observe(el);});
+
+/* MODAL DATA */
+const GD={
+  hotel:{tag:'Management Simulation',title:"HOTEL LUXE INN: MANAGER'S CHALLENGE",role:"// Master's Project — Lead Designer",year:'2024',platform:'PC',engine:'Unity 3D',img:'pages/LuxeInn.png',
+    desc:"A serious game putting you in the shoes of a busy hotel manager. Through timed tasks across reservations, room service, kitchen management and dining — all about efficient time management and real hospitality skills.",
+    mechs:[{i:'⏱️',n:'TIME MANAGEMENT',d:'Prioritize multiple hotel tasks simultaneously with real-time deadlines.'},{i:'🏨',n:'MULTI-DEPARTMENT',d:'Manage reservations, room service, kitchen, and dining as interconnected systems.'},{i:'📊',n:'EDUCATIONAL FEEDBACK',d:'Real-time performance scoring teaches efficient hotel management principles.'}],
+    links:[{l:'▶ Gameplay Video',h:'https://youtu.be/xCHTsjbmJTY'},{l:'⬇ Download Build',h:'https://drive.google.com/file/d/1gxt_WkotQk0s4rO7OJoQ0ZQs16-QeoB2/view'},{l:'📄 PDF',h:'https://drive.google.com/file/d/1cCnpSW-y58CAdkyc66Zq5skm8AUJRFPB/view'},{l:'📖 Full Case Study',h:'pages/projects.html'}]},
+  evil:{tag:'FPS Fantasy Adventure',title:'EVIL LEGACY',role:'// Course Project: Rational Design',year:'2023',platform:'PC',engine:'Unreal Engine',img:'pages/Evillegacy.png',
+    desc:"Fantasy FPS with magic, combat, and exploration. Battle corrupted forest creatures as a young wizard using four unique magical abilities: Diffindo, Protego, Impedimenta, and Avada Kedavra.",
+    mechs:[{i:'⚡',n:'DIFFINDO',d:'Lightning bolts dealing constant damage over time.'},{i:'🛡️',n:'PROTEGO',d:'Temporary shield blocking enemy attacks.'},{i:'❄️',n:'IMPEDIMENTA',d:'Freezes enemies while dealing damage.'},{i:'🔥',n:'AVADA KEDAVRA',d:'Powerful fireball — heaviest burst damage.'}],
+    links:[{l:'▶ Gameplay Video',h:'https://youtu.be/Bc49S2FR3qk'},{l:'⬇ Download Build',h:'https://drive.google.com/file/d/1mZhXWIEAcjxdo7sylQUF38PTih2l43ry/view'},{l:'📄 PDF',h:'https://drive.google.com/file/d/1_dgZ5gs1giCE4TAaE5sad564O77vFCdE/view'},{l:'📖 Full Case Study',h:'pages/projects.html'}]},
+  escape:{tag:'Stealth Adventure',title:'ESCAPE HUNT',role:'// Course Project: Group Project Solo',year:'2023',platform:'PC',engine:'Unity 3D',img:'pages/Escapehunt.png',
+    desc:"Play as a Box trapped in a guarded warehouse. Navigate vents, observe guard patterns, solve puzzles and escape using stealth, wit, and cunning.",
+    mechs:[{i:'👁️',n:'GUARD PATTERNS',d:'Study patrol routes to find safe windows.'},{i:'🔍',n:'CLUE DISCOVERY',d:'Uncover clues that unlock the escape path.'},{i:'🎭',n:'STEALTH NAV',d:'Vents, crates, cover — stay undetected.'}],
+    links:[{l:'▶ Gameplay Video',h:'https://youtu.be/lqwcb-ts59o4'},{l:'⬇ Download Build',h:'https://drive.google.com/file/d/1FJ2zDueHOUzt0yvAL3HygzUFwdICHxpe/view'},{l:'📄 PDF',h:'https://drive.google.com/file/d/1aFjG5gJZ_TiuN1Neq0DVqTeJdY-ZgVEf/view'},{l:'📖 Full Case Study',h:'pages/projects.html'}]},
+  dystopian:{tag:'Action Third-Person Shooter',title:'DYSTOPIAN',role:'// Course Project: Game Mechanics',year:'2022',platform:'PC',engine:'Unreal Engine',img:'pages/Dystopian.png',
+    desc:"TPS set in Exeter Cyber City 2055. Four innovative mechanics push traditional shooter conventions — bullet-time, physics launch, double jump blast, and precision laser combat.",
+    mechs:[{i:'🐌',n:"SNAIL'S PACE",d:"Bullet time when aiming — inspired by Max Payne."},{i:'🪃',n:'FLING',d:'Launch environment objects at enemies — inspired by Control.'},{i:'⬆️',n:'DUAL JUMP + BLAST',d:'Double jump with landing blast radius.'},{i:'🔫',n:'LASER RIFLE',d:'30-round precision weapon, steady rate.'}],
+    links:[{l:'▶ Gameplay Video',h:'https://youtu.be/FyTiHAGFq24'},{l:'⬇ Download Build',h:'https://drive.google.com/file/d/1RZvYpeBlXySbbnQ0K2I9rpiBKdAV6Mf_/view'},{l:'📄 PDF',h:'https://drive.google.com/file/d/1iH0n7Onz4sUQsB3bm7xy0FhqJpN5Pwxs/view'},{l:'📖 Full Case Study',h:'pages/projects.html'}]},
+  hollyhill:{tag:'Mission Design',title:'HOLLYHILL PENINSULA ISLAND',role:'// Course Project: Mission Design',year:'2023',platform:'PC',engine:'Unreal Engine',img:'pages/Missiondesign.png',
+    desc:"Open-world mission design on a crafted island. Narrative-driven quests, environmental storytelling, and world-building demonstrate full mission design pipeline.",
+    mechs:[{i:'🗺️',n:'MISSION FLOW',d:'Quest chains escalating in complexity and emotional resonance.'},{i:'🌍',n:'ENV. STORYTELLING',d:'Island communicates history through thoughtful layout.'},{i:'⚖️',n:'PACING',d:'Balanced difficulty curve from intro to finale.'}],
+    links:[{l:'▶ Gameplay Video',h:'https://youtu.be/CTgqu1qcPm8'},{l:'⬇ Download Build',h:'https://drive.google.com/file/d/19kRduzNoeP3HkQ5Go0-bJIzyJyW86dBL/view'},{l:'📖 Full Case Study',h:'pages/projects.html'}]},
+  persona:{tag:'Visual Novel',title:'PERSONA',role:'// Lead Designer',year:'2019',platform:'PC',engine:"Ren'Py / Unity",img:'pages/Persona.png',
+    desc:"Dark detective visual novel. A woman confesses to triple homicide — no bodies found. Navigate a twisting psychological investigation where your Fear is your killer.",
+    mechs:[{i:'🔎',n:'INVESTIGATION',d:'Player choices shape the narrative path and ending.'},{i:'🧠',n:'PROFILING',d:"Analyze suspect behavior and emotional cues."},{i:'😨',n:'FEAR MECHANIC',d:'Your fear state affects available dialogue options.'}],
+    links:[{l:'▶ Gameplay Video',h:'https://youtu.be/4iclQtB6GZg'},{l:'⬇ Download Build',h:'https://drive.google.com/file/d/1B21E-yNMJtBQ2Qxxz-hWE811SlbaYS1s/view'},{l:'📊 Presentation',h:'https://docs.google.com/presentation/d/1FkqoJvK-2WcipXxYPn1XWfpDjjqsPriM/edit'},{l:'📖 Full Case Study',h:'pages/projects.html'}]}
+};
+
+function openM(k){
+  const d=GD[k];if(!d)return;
+  const h=document.getElementById('mhero');
+  h.innerHTML=`<img src="${d.img}" alt="${d.title}" onerror="this.style.display='none'"><div class="mhov"></div><button class="mx" onclick="closeM()">✕</button>`;
+  document.getElementById('mtag').textContent=d.tag;
+  document.getElementById('mt').textContent=d.title;
+  document.getElementById('mr').textContent=d.role;
+  document.getElementById('mdesc').textContent=d.desc;
+  document.getElementById('msp').innerHTML=`<div class="ms"><div class="msk">Year</div><div class="msv">${d.year}</div></div><div class="ms"><div class="msk">Platform</div><div class="msv">${d.platform}</div></div><div class="ms"><div class="msk">Engine</div><div class="msv">${d.engine}</div></div>`;
+  document.getElementById('mmechs').innerHTML=`<div class="mmh">MECHANICS</div><div class="ml">${d.mechs.map(m=>`<div class="mech"><div class="mech-i">${m.i}</div><div><div class="mech-n">${m.n}</div><div class="mech-d">${m.d}</div></div></div>`).join('')}</div>`;
+  document.getElementById('mlnks').innerHTML=d.links.map(l=>`<a href="${l.h}" ${l.h.startsWith('pages')?'':'target="_blank"'} class="btn btn-g btn-sm">${l.l}</a>`).join('');
+  document.getElementById('mov').classList.add('open');
+  document.body.classList.add('locked');
+  /* push a history state so back button closes modal instead of leaving page */
+  history.pushState({modal:true},'','#modal');
+}
+function closeM(){
+  document.getElementById('mov').classList.remove('open');
+  document.body.classList.remove('locked');
+  /* clean up the hash without triggering another popstate */
+  if(location.hash==='#modal') history.replaceState(null,'',location.pathname+location.search);
+}
+/* back button closes modal */
+window.addEventListener('popstate',function(e){
+  if(document.getElementById('mov').classList.contains('open')){
+    document.getElementById('mov').classList.remove('open');
+    document.body.classList.remove('locked');
+  }
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeM();});
+</script>
+</body>
+</html>

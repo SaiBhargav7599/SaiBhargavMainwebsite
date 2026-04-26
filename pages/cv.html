@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CV — Sai Bhargav</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/shared.css">
+<style>
+.cv-layout{display:grid;grid-template-columns:280px 1fr;gap:48px;align-items:start}
+.cv-side{position:sticky;top:88px}
+.cv-sidebar-card{background:var(--card);border:1px solid var(--bdr);padding:26px;margin-bottom:16px}
+.cv-sidebar-card h4{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:2px;color:var(--c);border-bottom:1px solid var(--bdr);padding-bottom:9px;margin-bottom:14px}
+.cv-sidebar-card p{font-size:.88rem;color:var(--dim);line-height:1.7;margin-bottom:6px}
+.cv-sidebar-card a{color:var(--c);text-decoration:none}
+.cv-tags{display:flex;flex-wrap:wrap;gap:5px}
+.cv-tag{padding:3px 9px;border:1px solid var(--bdr);font-family:'Space Mono',monospace;font-size:.56rem;color:var(--dim);letter-spacing:1px}
+.dl-bar{background:rgba(0,245,255,.04);border:1px solid var(--bdr2);padding:22px 28px;display:flex;align-items:center;justify-content:space-between;margin-bottom:44px;flex-wrap:wrap;gap:14px}
+.dl-bar p{font-size:.95rem;color:var(--dim)}
+.cv-sec{margin-bottom:44px}
+.cv-sec h3{font-family:'Bebas Neue',sans-serif;font-size:1.9rem;letter-spacing:3px;color:#fff;margin-bottom:22px;display:flex;align-items:center;gap:14px}
+.cv-sec h3::after{content:'';flex:1;height:1px;background:var(--bdr)}
+.cv-entry{margin-bottom:24px;padding:22px;background:var(--card);border:1px solid var(--bdr);transition:border-color .3s}
+.cv-entry:hover{border-color:var(--c)}
+.cv-eh{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;flex-wrap:wrap;gap:7px}
+.cv-et{font-family:'Bebas Neue',sans-serif;font-size:1.32rem;letter-spacing:2px;color:#fff}
+.cv-ed{font-family:'Space Mono',monospace;font-size:.58rem;color:var(--c);padding:3px 9px;border:1px solid var(--c)}
+.cv-eo{font-family:'Space Mono',monospace;font-size:.64rem;color:var(--c2);letter-spacing:1px;margin-bottom:10px}
+.cv-li{list-style:none;padding:0}
+.cv-li li{font-size:.9rem;color:var(--dim);line-height:1.75;padding-left:14px;position:relative;margin-bottom:5px}
+.cv-li li::before{content:'▸';position:absolute;left:0;color:var(--c);font-size:.68rem}
+@media(max-width:860px){.cv-layout{grid-template-columns:1fr}.cv-side{position:static}}
+</style>
+</head>
+<body>
+<div id="cur"></div><div id="crng"></div><canvas id="bgc"></canvas><div id="pt"></div>
+<nav>
+  <a href="../index.html" class="nav-logo">SB</a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li><li><a href="about.html">About</a></li>
+    <li><a href="cv.html" class="act">CV</a></li>
+    <li><a href="https://saibhargav7599.github.io/operation-blackout/#goal" target="_blank">Level Design</a></li>
+    <li><a href="projects.html">Projects</a></li><li><a href="certifications.html">Certifications</a></li>
+    <li><a href="cinematics.html">Cinematics</a></li><li><a href="artworks.html">3D Artworks</a></li>
+  </ul>
+  <button class="ham" id="ham"><span></span><span></span><span></span></button>
+</nav>
+<div id="mobnav"><a href="../index.html">Home</a><a href="about.html">About</a><a href="cv.html">CV</a><a href="https://saibhargav7599.github.io/operation-blackout/#goal" target="_blank">Level Design</a><a href="projects.html">Projects</a><a href="certifications.html">Certifications</a><a href="cinematics.html">Cinematics</a><a href="artworks.html">3D Artworks</a></div>
+
+<main>
+<div class="page-hero"><div class="page-hero-eye">Curriculum Vitae</div><h1 class="page-hero-h1">MY CV</h1><p class="page-hero-sub">Game Designer with MA and industry experience across game mechanics, level design, and prototyping.</p></div>
+<div class="wrap">
+  <!-- Download bar -->
+  <div class="dl-bar rev">
+    <div><p style="color:#fff;font-family:'Bebas Neue',sans-serif;font-size:1.25rem;letter-spacing:2px">SAI BHARGAV — GAME DESIGNER</p><p>Download the full PDF version of my CV.</p></div>
+    <a href="https://drive.google.com/file/d/1DwXBXA0HzN7uZkNHEXErwUaWLLwTORgs/view" target="_blank" class="btn btn-p">⬇ Download CV (PDF)</a>
+  </div>
+  <div class="cv-layout">
+    <!-- Sidebar -->
+    <div class="cv-side rev-l">
+      <div class="cv-sidebar-card">
+        <h4>CONTACT</h4>
+        <p>📍 United Kingdom</p>
+        <p>✉ <a href="mailto:saibhargav7599@gmail.com">saibhargav7599@gmail.com</a></p>
+        <p>🔗 <a href="https://www.linkedin.com/in/saibhargav7599" target="_blank">LinkedIn</a></p>
+        <p>🎨 <a href="http://sai_bhargav.artstation.com" target="_blank">ArtStation</a></p>
+      </div>
+      <div class="cv-sidebar-card">
+        <h4>GAME DESIGN SKILLS</h4>
+        <div class="cv-tags">
+          <span class="cv-tag">Systems Design</span><span class="cv-tag">Level Design</span>
+          <span class="cv-tag">Player Progression</span><span class="cv-tag">Economy Design</span>
+          <span class="cv-tag">GDD Writing</span><span class="cv-tag">UI Design</span>
+          <span class="cv-tag">Prototyping</span><span class="cv-tag">Live-Op</span>
+          <span class="cv-tag">Encounter Design</span><span class="cv-tag">VR/AR</span>
+        </div>
+      </div>
+      <div class="cv-sidebar-card">
+        <h4>TECHNICAL TOOLS</h4>
+        <div class="cv-tags">
+          <span class="cv-tag">Unreal Engine</span><span class="cv-tag">Unity</span>
+          <span class="cv-tag">Autodesk Maya</span><span class="cv-tag">Adobe Suite</span>
+          <span class="cv-tag">Video Editing</span><span class="cv-tag">MS Office</span>
+          <span class="cv-tag">Google Suite</span><span class="cv-tag">Trello</span>
+        </div>
+      </div>
+      <div class="cv-sidebar-card">
+        <h4>LANGUAGES</h4>
+        <p>English — Fluent</p><p>Telugu — Native</p><p>Hindi — Conversational</p>
+      </div>
+      <div class="cv-sidebar-card">
+        <h4>FEATURED AT</h4>
+        <p><strong style="color:#fff">Expo Tees</strong> — Teesside University, May 2024</p>
+        <p><strong style="color:#fff">NASSCOM / IGDC</strong> — Showcased PERSONA, Dec 2019</p>
+      </div>
+    </div>
+    <!-- Main -->
+    <div>
+      <div class="cv-sec rev">
+        <h3>EXPERIENCE</h3>
+        <div class="cv-entry">
+          <div class="cv-eh"><div class="cv-et">GAME DESIGNER</div><div class="cv-ed">SEP – DEC 2023</div></div>
+          <div class="cv-eo">NeoVene Limited · Internship · Middlesbrough, UK · Remote</div>
+          <ul class="cv-li">
+            <li>Designed and developed an educational game focused on healthcare through gamification</li>
+            <li>Created comprehensive GDD and supplementary design materials</li>
+            <li>Planned and prototyped levels for engaging, pedagogically effective gameplay</li>
+            <li>Utilized Unity & Unreal to create dynamic immersive environments with interactions and animations</li>
+            <li>Developed AR/VR levels praised for intuitive navigation and player immersion</li>
+            <li>Delivered a functional game prototype within a 4-month period</li>
+          </ul>
+        </div>
+        <div class="cv-entry">
+          <div class="cv-eh"><div class="cv-et">LEVEL DESIGNER</div><div class="cv-ed">NOV 2021 – JUL 2022</div></div>
+          <div class="cv-eo">CYMAX Infotainment · Full-time · Hyderabad, India · On-site · 9 months</div>
+          <ul class="cv-li">
+            <li>Executed full-cycle level planning, from concept to implementation via grey box prototyping</li>
+            <li>Designed and balanced levels for Toilet Dash — surpassed 50,000 Play Store downloads</li>
+            <li>Revamped levels and introduced fresh mechanics to enhance player progression</li>
+            <li>Designed onboarding and progression systems to boost First-Time User Experience (FTUE)</li>
+            <li>Designed new levels for Mega SUV Car Ramp focused on driving physics and challenge escalation</li>
+            <li>Developed a 360-degree cinematic experience for immersive storytelling</li>
+          </ul>
+        </div>
+        <div class="cv-entry">
+          <div class="cv-eh"><div class="cv-et">JUNIOR GAME DESIGNER</div><div class="cv-ed">MAY – OCT 2021</div></div>
+          <div class="cv-eo">Flick Games Official · Full-time · Hyderabad, India · Remote · 6 months</div>
+          <ul class="cv-li">
+            <li>Supported senior designers in producing game design documents and mechanic specifications</li>
+            <li>Contributed to mobile game feature design and iterative prototyping cycles</li>
+            <li>Participated in agile sprint planning within a remote-first team</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cv-sec rev">
+        <h3>EDUCATION</h3>
+        <div class="cv-entry">
+          <div class="cv-eh"><div class="cv-et">MA GAME DESIGN (WITH ADVANCED PRACTICE)</div><div class="cv-ed">2022–2024</div></div>
+          <div class="cv-eo">Teesside University · Middlesbrough, UK</div>
+          <ul class="cv-li">
+            <li>Credits: 120/120 — Full marks achieved</li>
+            <li>Specialised in game mechanics design, level design, narrative systems, and serious games</li>
+            <li>Master's thesis: Hotel Luxe Inn — serious game for hospitality management training</li>
+            <li>Produced 7-iteration blockout level design project: Operation Blackout (UE5)</li>
+          </ul>
+        </div>
+        <div class="cv-entry">
+          <div class="cv-eh"><div class="cv-et">BACHELOR'S IN MULTIMEDIA (GAMING)</div><div class="cv-ed">2017–2021</div></div>
+          <div class="cv-eo">Jawaharlal Nehru Technological University · Hyderabad, India · Grade: 72.82</div>
+          <ul class="cv-li">
+            <li>Four-year degree covering game development, interactive media, and 3D art</li>
+            <li>Final year project: Persona — visual novel game as Lead Designer</li>
+            <li>Designed a playable board game: TrickNTrap</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cv-sec rev">
+        <h3>KEY ACHIEVEMENTS</h3>
+        <div class="cv-entry">
+          <div class="cv-eh"><div class="cv-et">TOILET DASH — 50K+ DOWNLOADS</div></div>
+          <div class="cv-eo">CYMAX Infotainment · Google Play Store</div>
+          <ul class="cv-li">
+            <li>Contributed to surpassing 50,000 downloads, driving steady growth in DAU</li>
+            <li>Enhanced player activation and early retention through improved FTUE design</li>
+            <li>Boosted average playtime to 30 minutes by delivering engaging content updates</li>
+          </ul>
+        </div>
+        <div class="cv-entry">
+          <div class="cv-eh"><div class="cv-et">CERTIFICATIONS</div></div>
+          <ul class="cv-li">
+            <li>Level Design Mastery Bootcamp — Zamfir Stefan</li>
+            <li>Enterprise Design Thinking Practitioner — IBM (Credly Verified)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</main>
+<footer><div class="f-copy">© 2024 SAI BHARGAV. ALL RIGHTS RESERVED.</div><div class="f-logo">SB</div><div class="f-copy">GAME DESIGNER</div></footer>
+<script src="../assets/shared.js"></script>
+<script>document.getElementById('ham').onclick=()=>document.getElementById('mobnav').classList.toggle('open');</script>
+</body>
+</html>

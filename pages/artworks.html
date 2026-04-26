@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>3D Artworks — Sai Bhargav</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/shared.css">
+<style>
+.art-masonry{columns:3;gap:3px;margin-top:52px}
+.art-piece{break-inside:avoid;margin-bottom:3px;position:relative;overflow:hidden;border:1px solid var(--bdr);cursor:zoom-in;transition:border-color .4s}
+.art-piece:hover{border-color:var(--c)}
+.art-box{position:relative;overflow:hidden}
+.art-piece:hover .art-box-bg{transform:scale(1.07)}
+.art-box-bg{width:100%;display:block;transition:transform .55s ease;position:relative}
+.art-placeholder{display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.art-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(2,4,8,.95),rgba(2,4,8,.3) 50%,transparent 100%);opacity:0;transition:opacity .32s;display:flex;flex-direction:column;justify-content:flex-end;padding:18px}
+.art-piece:hover .art-ov{opacity:1}
+.art-lbl{font-family:'Bebas Neue',sans-serif;font-size:1.15rem;letter-spacing:2px;color:#fff;margin-bottom:3px}
+.art-sub{font-family:'Space Mono',monospace;font-size:.56rem;color:var(--c);letter-spacing:1px}
+/* Gradient placeholders */
+.ag1{background:linear-gradient(135deg,#0a1a2a,#1a3d5a,#0a0a2a)}
+.ag2{background:linear-gradient(135deg,#1a0a0a,#3d1a1a,#0a1a1a)}
+.ag3{background:linear-gradient(135deg,#0a1a0a,#1a3d1a,#1a1a0a)}
+.ag4{background:linear-gradient(135deg,#1a0a1a,#2a1a3d,#0a0a1a)}
+.ag5{background:linear-gradient(135deg,#001a20,#20001a,#0a1a0a)}
+.ag6{background:linear-gradient(135deg,#1a1000,#3d2800,#1a0010)}
+.ag7{background:linear-gradient(135deg,#0a0a1a,#001a3d,#1a0020)}
+.ag8{background:linear-gradient(135deg,#001810,#183018,#101810)}
+.ph-inner{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:.12}
+.ph-inner svg{width:55%;height:55%}
+
+/* LIGHTBOX */
+.lb-ov{position:fixed;inset:0;z-index:900;background:rgba(2,4,8,.97);display:flex;align-items:center;justify-content:center;padding:36px;opacity:0;pointer-events:none;transition:opacity .4s}
+.lb-ov.open{opacity:1;pointer-events:all}
+.lb-inner{max-width:860px;width:100%;position:relative;text-align:center}
+.lb-placeholder{width:100%;height:480px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.lb-x{position:absolute;top:-46px;right:0;width:42px;height:42px;background:rgba(2,4,8,.8);border:1px solid var(--bdr);color:var(--txt);font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s}
+.lb-x:hover{border-color:var(--c2);color:var(--c2)}
+.lb-cap{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:3px;margin-top:18px;color:#fff}
+.lb-sub{font-family:'Space Mono',monospace;font-size:.6rem;color:var(--c);letter-spacing:1px;margin-top:5px}
+.lb-nav{display:flex;gap:11px;justify-content:center;margin-top:18px}
+.lb-btn{padding:8px 20px;border:1px solid var(--bdr);font-family:'Space Mono',monospace;font-size:.58rem;color:var(--dim);letter-spacing:1px;cursor:pointer;background:transparent;transition:all .3s;clip-path:polygon(4px 0%,100% 0%,calc(100% - 4px) 100%,0% 100%)}
+.lb-btn:hover{border-color:var(--c);color:var(--c)}
+/* note box */
+.img-note{margin-top:40px;padding:20px 24px;background:rgba(0,245,255,.04);border:1px solid var(--bdr2)}
+@media(max-width:900px){.art-masonry{columns:2}}
+@media(max-width:540px){.art-masonry{columns:1}}
+</style>
+</head>
+<body>
+<div id="cur"></div><div id="crng"></div><canvas id="bgc"></canvas><div id="pt"></div>
+<nav>
+  <a href="../index.html" class="nav-logo">SB</a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="cv.html">CV</a></li>
+    <li><a href="https://saibhargav7599.github.io/operation-blackout/#goal" target="_blank">Level Design</a></li>
+    <li><a href="projects.html">Projects</a></li><li><a href="certifications.html">Certifications</a></li><li><a href="cinematics.html">Cinematics</a></li>
+    <li><a href="artworks.html" class="act">3D Artworks</a></li>
+  </ul>
+  <button class="ham" id="ham"><span></span><span></span><span></span></button>
+</nav>
+<div id="mobnav"><a href="../index.html">Home</a><a href="about.html">About</a><a href="cv.html">CV</a><a href="https://saibhargav7599.github.io/operation-blackout/#goal" target="_blank">Level Design</a><a href="projects.html">Projects</a><a href="certifications.html">Certifications</a><a href="cinematics.html">Cinematics</a><a href="artworks.html">3D Artworks</a></div>
+
+<main>
+<div class="page-hero">
+  <div class="page-hero-eye">Visual Work</div>
+  <h1 class="page-hero-h1">3D ART<br>WORKS</h1>
+  <p class="page-hero-sub">3D prop models, vehicles, and weapons created in Autodesk Maya. Click any piece to view full-size.</p>
+</div>
+<div class="wrap">
+
+  <!-- Add real images instructions -->
+  <div class="img-note rev">
+    <div style="font-family:'Space Mono',monospace;font-size:.58rem;color:var(--c);letter-spacing:2px;margin-bottom:8px">// HOW TO ADD YOUR REAL ARTWORK IMAGES</div>
+    <p style="font-size:.88rem;color:var(--dim);line-height:1.75">Your Google Drive folder: <a href="https://drive.google.com/drive/folders/1sTUmoWL7zdJS5Lcs_Oowol0DH8aCZwjy?usp=sharing" target="_blank" style="color:var(--c)">Open Images Folder →</a><br>
+    Download your images and place them in the same folder as this HTML file. Then replace each <code style="color:var(--c2)">.art-placeholder</code> div with: <code style="color:var(--c2)">&lt;img src="Artwork1.jpg" alt="Sci-Fi Medkit" style="width:100%;display:block"&gt;</code></p>
+  </div>
+
+  <div class="art-masonry" id="artgrid">
+    <div class="art-piece rev" onclick="openLb(0)">
+      <div class="art-box">
+        <div class="art-box-bg art-placeholder ag1" style="height:280px">
+          <img src="../pages/Artwork 1.png" alt="SCI-FI MEDKIT" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" onerror="this.style.display='none'">
+        </div>
+      </div>
+      <div class="art-ov"><div class="art-lbl">SCI-FI MEDKIT</div><div class="art-sub">3D Prop · Autodesk Maya</div></div>
+    </div>
+    <div class="art-piece rev.d2" onclick="openLb(1)">
+      <div class="art-box">
+        <div class="art-box-bg art-placeholder ag2" style="height:340px">
+          <img src="../pages/Artwork 2.png" alt="VINTAGE MINI TRUCK" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" onerror="this.style.display='none'">
+        </div>
+      </div>
+      <div class="art-ov"><div class="art-lbl">VINTAGE MINI TRUCK</div><div class="art-sub">3D Vehicle · Autodesk Maya</div></div>
+    </div>
+    <div class="art-piece rev.d3" onclick="openLb(2)">
+      <div class="art-box">
+        <div class="art-box-bg art-placeholder ag3" style="height:260px">
+          <img src="../pages/Artwork 3.png" alt="BARRICADE" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" onerror="this.style.display='none'">
+        </div>
+      </div>
+      <div class="art-ov"><div class="art-lbl">BARRICADE</div><div class="art-sub">3D Prop · Autodesk Maya</div></div>
+    </div>
+    <div class="art-piece rev.d4" onclick="openLb(3)">
+      <div class="art-box">
+        <div class="art-box-bg art-placeholder ag4" style="height:300px">
+          <img src="../pages/Artwork 4.png" alt="CONTAINER" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" onerror="this.style.display='none'">
+        </div>
+      </div>
+      <div class="art-ov"><div class="art-lbl">CONTAINER</div><div class="art-sub">3D Prop · Autodesk Maya</div></div>
+    </div>
+    <div class="art-piece rev.d5" onclick="openLb(4)">
+      <div class="art-box">
+        <div class="art-box-bg art-placeholder ag5" style="height:280px">
+          <img src="../pages/Artwork 5.png" alt="CRATE" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" onerror="this.style.display='none'">
+        </div>
+      </div>
+      <div class="art-ov"><div class="art-lbl">CRATE</div><div class="art-sub">3D Prop · Autodesk Maya</div></div>
+    </div>
+    <div class="art-piece rev.d1" onclick="openLb(5)">
+      <div class="art-box">
+        <div class="art-box-bg art-placeholder ag6" style="height:320px">
+          <img src="../pages/Artwork 6.png" alt="GRENADE" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" onerror="this.style.display='none'">
+        </div>
+      </div>
+      <div class="art-ov"><div class="art-lbl">GRENADE</div><div class="art-sub">3D Weapon Prop · Autodesk Maya</div></div>
+    </div>
+    <div class="art-piece rev.d2" onclick="openLb(6)">
+      <div class="art-box">
+        <div class="art-box-bg art-placeholder ag7" style="height:270px">
+          <img src="../pages/Artwork 7.png" alt="CROSSBOW" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" onerror="this.style.display='none'">
+        </div>
+      </div>
+      <div class="art-ov"><div class="art-lbl">CROSSBOW</div><div class="art-sub">3D Weapon · Autodesk Maya</div></div>
+    </div>
+    <div class="art-piece rev.d3" onclick="openLb(7)">
+      <div class="art-box">
+        <div class="art-box-bg art-placeholder ag8" style="height:350px">
+          <img src="../pages/Artwork 8.png" alt="VINTAGE CAR" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" onerror="this.style.display='none'">
+        </div>
+      </div>
+      <div class="art-ov"><div class="art-lbl">VINTAGE CAR</div><div class="art-sub">3D Vehicle · Autodesk Maya</div></div>
+    </div>
+  </div><!-- /masonry -->
+
+  <div style="text-align:center;margin-top:36px" class="rev">
+    <a href="http://sai_bhargav.artstation.com" target="_blank" class="btn btn-p">🎨 View Full Portfolio on ArtStation</a>
+  </div>
+</div>
+</main>
+
+<!-- LIGHTBOX -->
+<div class="lb-ov" id="lbov" onclick="if(event.target===this)closeLb()">
+  <div class="lb-inner">
+    <button class="lb-x" onclick="closeLb()">✕</button>
+    <div class="lb-placeholder" id="lbimg"></div>
+    <div class="lb-cap" id="lbcap"></div>
+    <div class="lb-sub" id="lbsub"></div>
+    <div class="lb-nav">
+      <button class="lb-btn" onclick="lbNav(-1)">← PREV</button>
+      <button class="lb-btn" onclick="lbNav(1)">NEXT →</button>
+    </div>
+  </div>
+</div>
+
+<footer><div class="f-copy">© 2024 SAI BHARGAV. ALL RIGHTS RESERVED.</div><div class="f-logo">SB</div><div class="f-copy">GAME DESIGNER</div></footer>
+<script src="../assets/shared.js"></script>
+<script>
+document.getElementById('ham').onclick=()=>document.getElementById('mobnav').classList.toggle('open');
+
+const AW=[
+  {lbl:'SCI-FI MEDKIT',sub:'3D Prop · Autodesk Maya',cls:'ag1',img:'../pages/Artwork 1.png'},
+  {lbl:'VINTAGE MINI TRUCK',sub:'3D Vehicle · Autodesk Maya',cls:'ag2',img:'../pages/Artwork 2.png'},
+  {lbl:'BARRICADE',sub:'3D Prop · Autodesk Maya',cls:'ag3',img:'../pages/Artwork 3.png'},
+  {lbl:'CONTAINER',sub:'3D Prop · Autodesk Maya',cls:'ag4',img:'../pages/Artwork 4.png'},
+  {lbl:'CRATE',sub:'3D Prop · Autodesk Maya',cls:'ag5',img:'../pages/Artwork 5.png'},
+  {lbl:'GRENADE',sub:'3D Weapon Prop · Autodesk Maya',cls:'ag6',img:'../pages/Artwork 6.png'},
+  {lbl:'CROSSBOW',sub:'3D Weapon · Autodesk Maya',cls:'ag7',img:'../pages/Artwork 7.png'},
+  {lbl:'VINTAGE CAR',sub:'3D Vehicle · Autodesk Maya',cls:'ag8',img:'../pages/Artwork 8.png'},
+];
+let cur=0;
+function openLb(i){cur=i;updLb();document.getElementById('lbov').classList.add('open');document.body.classList.add('locked');}
+function updLb(){
+  const a=AW[cur];
+  const d=document.getElementById('lbimg');
+  d.className='lb-placeholder '+a.cls;
+  d.style.cssText='width:100%;min-height:380px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden';
+  d.innerHTML=`<img src="${a.img}" alt="${a.lbl}" style="max-width:100%;max-height:70vh;object-fit:contain;display:block" onerror="this.style.display='none'">`;
+  document.getElementById('lbcap').textContent=a.lbl;
+  document.getElementById('lbsub').textContent=a.sub;
+}
+function lbNav(d){cur=(cur+d+AW.length)%AW.length;updLb();}
+function closeLb(){document.getElementById('lbov').classList.remove('open');document.body.classList.remove('locked');}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLb();if(e.key==='ArrowLeft')lbNav(-1);if(e.key==='ArrowRight')lbNav(1);});
+</script>
+</body>
+</html>

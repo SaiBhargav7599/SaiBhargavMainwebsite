@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Projects — Sai Bhargav</title>
+<link rel="stylesheet" href="../assets/shared.css">
+<style>
+.filter-bar{display:flex;gap:9px;flex-wrap:wrap;margin-top:28px}
+.fb{padding:7px 18px;border:1px solid var(--bdr);font-family:'Space Mono',monospace;font-size:.58rem;color:var(--dim);letter-spacing:1px;cursor:pointer;background:transparent;transition:all .3s;clip-path:polygon(4px 0%,100% 0%,calc(100% - 4px) 100%,0% 100%)}
+.fb.on,.fb:hover{border-color:var(--c);color:var(--c);background:rgba(0,245,255,.05)}
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:2px;margin-top:48px}
+.pc{background:var(--card);border:1px solid var(--bdr);overflow:hidden;cursor:pointer;transition:border-color .3s,transform .3s,box-shadow .3s}
+.pc:hover{border-color:var(--c);transform:translateY(-6px);box-shadow:var(--glow)}
+.pt{width:100%;padding-top:52%;position:relative;overflow:hidden}
+.pt-bg{position:absolute;inset:0;transition:transform .5s;background-size:cover;background-position:center}
+.pc:hover .pt-bg{transform:scale(1.06)}
+.pt-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(2,4,8,.97) 0%,rgba(2,4,8,.18) 55%,transparent 100%)}
+.pt-badge{position:absolute;top:13px;right:13px;padding:4px 11px;border:1px solid var(--c);background:rgba(0,245,255,.08);font-family:'Space Mono',monospace;font-size:.54rem;color:var(--c);letter-spacing:1px;z-index:2}
+.pt-n{position:absolute;top:11px;left:13px;font-family:'Bebas Neue',sans-serif;font-size:4.5rem;color:rgba(255,255,255,.04);z-index:1;line-height:1}
+.pt-yt{position:absolute;bottom:12px;left:12px;z-index:3}
+.yt-chip{padding:4px 11px;background:rgba(255,0,0,.72);font-family:'Space Mono',monospace;font-size:.52rem;color:#fff;letter-spacing:1px;text-decoration:none;border-radius:2px;transition:background .3s}
+.yt-chip:hover{background:rgba(255,0,0,1)}
+.pi{padding:24px}
+.pi-genre{font-family:'Space Mono',monospace;font-size:.57rem;color:var(--c2);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px}
+.pi-name{font-family:'Bebas Neue',sans-serif;font-size:1.75rem;letter-spacing:2px;color:#fff;line-height:1.1;margin-bottom:10px}
+.pi-desc{font-size:.87rem;color:var(--dim);line-height:1.7;margin-bottom:16px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.pi-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.pi-tag{padding:3px 9px;border:1px solid var(--bdr);font-family:'Space Mono',monospace;font-size:.55rem;color:var(--dim);letter-spacing:1px}
+.pi-foot{display:flex;align-items:center;justify-content:space-between}
+.pi-yr{font-family:'Space Mono',monospace;font-size:.6rem;color:var(--dim)}
+.pi-arr{width:34px;height:34px;border:1px solid var(--bdr);display:flex;align-items:center;justify-content:center;clip-path:polygon(4px 0%,100% 0%,calc(100% - 4px) 100%,0% 100%);transition:all .3s;color:var(--dim);font-size:.9rem}
+.pc:hover .pi-arr{background:var(--c);color:var(--bg);border-color:var(--c)}
+
+/* DETAIL OVERLAY — full-screen panel (no browser nav interference) */
+.detail-ov{position:fixed;inset:0;z-index:700;background:rgba(2,4,8,.98);overflow-y:auto;
+  opacity:0;pointer-events:none;transition:opacity .4s;
+  scrollbar-width:thin;scrollbar-color:var(--c) transparent}
+.detail-ov.open{opacity:1;pointer-events:all}
+.d-hero{position:relative;width:100%;padding-top:42%;overflow:hidden}
+.d-hero-vid{position:absolute;inset:0;width:100%;height:100%;border:none;filter:brightness(.32)}
+.d-hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.45)}
+.d-hero-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(2,4,8,1) 0%,rgba(2,4,8,.5) 50%,transparent 100%)}
+.d-hero-content{position:absolute;bottom:36px;left:56px;right:56px;z-index:2}
+.d-close{position:absolute;top:16px;right:16px;z-index:10;width:44px;height:44px;background:rgba(2,4,8,.85);border:1px solid var(--bdr);color:var(--txt);font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s}
+.d-close:hover{border-color:var(--c2);color:var(--c2)}
+.d-body{max-width:1000px;margin:0 auto;padding:0 56px 80px}
+.d-genre{display:inline-block;padding:4px 13px;border:1px solid var(--c2);font-family:'Space Mono',monospace;font-size:.57rem;color:var(--c2);letter-spacing:2px;margin-bottom:12px}
+.d-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.4rem,6vw,5rem);letter-spacing:3px;line-height:.9;margin-bottom:8px}
+.d-role{font-family:'Space Mono',monospace;font-size:.65rem;color:var(--c);letter-spacing:2px}
+.d-specs{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin:22px 0}
+.dsp{padding:13px;background:rgba(0,245,255,.03);border:1px solid var(--bdr);text-align:center}
+.dspk{font-family:'Space Mono',monospace;font-size:.5rem;color:var(--dim);letter-spacing:2px;text-transform:uppercase;margin-bottom:5px}
+.dspv{font-family:'Bebas Neue',sans-serif;font-size:1.15rem;color:var(--c);letter-spacing:2px}
+.d-sh{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:3px;color:#fff;margin:30px 0 13px;display:flex;align-items:center;gap:13px}
+.d-sh::after{content:'';flex:1;height:1px;background:var(--bdr)}
+.d-p{font-size:1rem;line-height:1.9;color:var(--dim);margin-bottom:16px}
+.mech-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:28px}
+.mech{display:flex;gap:12px;padding:14px;background:rgba(0,245,255,.03);border-left:2px solid var(--c)}
+.mi{font-size:1.3rem;flex-shrink:0}.mn{font-family:'Bebas Neue',sans-serif;font-size:.97rem;letter-spacing:2px;color:#fff;margin-bottom:3px}.md{font-size:.83rem;color:var(--dim);line-height:1.55}
+.d-links{display:flex;gap:11px;flex-wrap:wrap;margin-top:28px;padding-top:22px;border-top:1px solid var(--bdr)}
+@media(max-width:860px){.proj-grid{grid-template-columns:1fr}.d-body{padding:0 22px 56px}.d-hero-content{left:20px;right:20px}.d-specs,.mech-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:540px){.d-specs,.mech-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div id="cur"></div><div id="crng"></div><canvas id="bgc"></canvas><div id="pt"></div>
+<nav>
+  <a href="../index.html" class="nav-logo">SB</a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="cv.html">CV</a></li>
+    <li><a href="https://saibhargav7599.github.io/operation-blackout/#goal" target="_blank">Level Design</a></li>
+    <li><a href="projects.html" class="act">Projects</a></li>
+    <li><a href="certifications.html">Certifications</a></li><li><a href="cinematics.html">Cinematics</a></li><li><a href="artworks.html">3D Artworks</a></li>
+  </ul>
+  <button class="ham" id="ham"><span></span><span></span><span></span></button>
+</nav>
+<div id="mobnav"><a href="../index.html">Home</a><a href="about.html">About</a><a href="cv.html">CV</a><a href="https://saibhargav7599.github.io/operation-blackout/#goal" target="_blank">Level Design</a><a href="projects.html">Projects</a><a href="certifications.html">Certifications</a><a href="cinematics.html">Cinematics</a><a href="artworks.html">3D Artworks</a></div>
+
+<main>
+<div class="page-hero">
+  <div class="page-hero-eye">My Work</div>
+  <h1 class="page-hero-h1">PROJECTS</h1>
+  <p class="page-hero-sub">Six games — from a Master's serious game to a dark detective visual novel. Full design case studies with gameplay videos, builds, and design breakdowns.</p>
+  <div class="filter-bar">
+    <button class="fb on" onclick="filt('all',this)">ALL</button>
+    <button class="fb" onclick="filt('FPS',this)">FPS</button>
+    <button class="fb" onclick="filt('TPS',this)">TPS</button>
+    <button class="fb" onclick="filt('Simulation',this)">SIMULATION</button>
+    <button class="fb" onclick="filt('Stealth',this)">STEALTH</button>
+    <button class="fb" onclick="filt('Mission',this)">MISSION</button>
+    <button class="fb" onclick="filt('Visual Novel',this)">VISUAL NOVEL</button>
+  </div>
+</div>
+<div class="wrap" style="padding-top:40px">
+  <div class="proj-grid" id="pg">
+
+    <div class="pc rev" data-g="Simulation" onclick="openD('hotel')">
+      <div class="pt"><div class="pt-bg" style="background-image:url('LuxeInn.png');background-color:#140228"></div><div class="pt-ov"></div><div class="pt-n">01</div><div class="pt-badge">MASTER'S</div><div class="pt-yt"><a href="https://youtu.be/xCHTsjbmJTY" target="_blank" onclick="event.stopPropagation()" class="yt-chip">▶ TRAILER</a></div></div>
+      <div class="pi"><div class="pi-genre">Management Simulation · 2024</div><div class="pi-name">HOTEL LUXE INN</div><div class="pi-desc">A serious game simulating hotel management with timed multi-department tasks — reservations, room service, kitchen, and dining.</div><div class="pi-tags"><span class="pi-tag">Unity 3D</span><span class="pi-tag">Serious Game</span><span class="pi-tag">PC</span></div><div class="pi-foot"><span class="pi-yr">2024</span><div class="pi-arr">→</div></div></div>
+    </div>
+
+    <div class="pc rev d1" data-g="FPS" onclick="openD('evil')">
+      <div class="pt"><div class="pt-bg" style="background-image:url('Evillegacy.png');background-color:#081508"></div><div class="pt-ov"></div><div class="pt-n">02</div><div class="pt-badge">FPS</div><div class="pt-yt"><a href="https://youtu.be/Bc49S2FR3qk" target="_blank" onclick="event.stopPropagation()" class="yt-chip">▶ TRAILER</a></div></div>
+      <div class="pi"><div class="pi-genre">FPS Fantasy Adventure · 2023</div><div class="pi-name">EVIL LEGACY</div><div class="pi-desc">Fantasy FPS with four unique magic spells — Diffindo, Protego, Impedimenta, Avada Kedavra. Battle corrupted creatures in a mystical forest.</div><div class="pi-tags"><span class="pi-tag">Unreal Engine</span><span class="pi-tag">FPS</span><span class="pi-tag">Fantasy</span></div><div class="pi-foot"><span class="pi-yr">2023</span><div class="pi-arr">→</div></div></div>
+    </div>
+
+    <div class="pc rev d2" data-g="Stealth" onclick="openD('escape')">
+      <div class="pt"><div class="pt-bg" style="background-image:url('Escapehunt.png');background-color:#181800"></div><div class="pt-ov"></div><div class="pt-n">03</div><div class="pt-badge">STEALTH</div><div class="pt-yt"><a href="https://youtu.be/lqwcb-ts59o4" target="_blank" onclick="event.stopPropagation()" class="yt-chip">▶ TRAILER</a></div></div>
+      <div class="pi"><div class="pi-genre">Stealth Adventure · 2023</div><div class="pi-name">ESCAPE HUNT</div><div class="pi-desc">Play as a Box trapped in a guarded warehouse. Navigate vents, observe guard patterns, solve puzzles and escape.</div><div class="pi-tags"><span class="pi-tag">Unity 3D</span><span class="pi-tag">Stealth</span><span class="pi-tag">Puzzle</span></div><div class="pi-foot"><span class="pi-yr">2023</span><div class="pi-arr">→</div></div></div>
+    </div>
+
+    <div class="pc rev d1" data-g="TPS" onclick="openD('dystopian')">
+      <div class="pt"><div class="pt-bg" style="background-image:url('Dystopian.png');background-color:#080818"></div><div class="pt-ov"></div><div class="pt-n">04</div><div class="pt-badge">TPS</div><div class="pt-yt"><a href="https://youtu.be/FyTiHAGFq24" target="_blank" onclick="event.stopPropagation()" class="yt-chip">▶ TRAILER</a></div></div>
+      <div class="pi"><div class="pi-genre">Action TPS · 2022</div><div class="pi-name">DYSTOPIAN</div><div class="pi-desc">TPS set in Exeter Cyber City 2055 with four custom mechanics: Snail's Pace bullet-time, FLING, Dual Jump + Fall Blast, and Laser Rifle.</div><div class="pi-tags"><span class="pi-tag">Unreal Engine</span><span class="pi-tag">Sci-Fi</span><span class="pi-tag">TPS</span></div><div class="pi-foot"><span class="pi-yr">2022</span><div class="pi-arr">→</div></div></div>
+    </div>
+
+    <div class="pc rev d2" data-g="Mission" onclick="openD('hollyhill')">
+      <div class="pt"><div class="pt-bg" style="background-image:url('Missiondesign.png');background-color:#001810"></div><div class="pt-ov"></div><div class="pt-n">05</div><div class="pt-badge">MISSION</div><div class="pt-yt"><a href="https://youtu.be/CTgqu1qcPm8" target="_blank" onclick="event.stopPropagation()" class="yt-chip">▶ TRAILER</a></div></div>
+      <div class="pi"><div class="pi-genre">Mission Design · 2023</div><div class="pi-name">HOLLYHILL PENINSULA</div><div class="pi-desc">Open-world mission design on a crafted island. Narrative-driven quests, world-building, and environmental storytelling.</div><div class="pi-tags"><span class="pi-tag">Unreal Engine</span><span class="pi-tag">Mission Design</span><span class="pi-tag">Open World</span></div><div class="pi-foot"><span class="pi-yr">2023</span><div class="pi-arr">→</div></div></div>
+    </div>
+
+    <div class="pc rev d3" data-g="Visual Novel" onclick="openD('persona')">
+      <div class="pt"><div class="pt-bg" style="background-image:url('Persona.png');background-color:#180606"></div><div class="pt-ov"></div><div class="pt-n">06</div><div class="pt-badge">LEAD DESIGNER</div><div class="pt-yt"><a href="https://youtu.be/4iclQtB6GZg" target="_blank" onclick="event.stopPropagation()" class="yt-chip">▶ TRAILER</a></div></div>
+      <div class="pi"><div class="pi-genre">Visual Novel · 2019</div><div class="pi-name">PERSONA</div><div class="pi-desc">Dark detective visual novel. A woman confesses to triple homicide — no bodies found. Navigate a twisting psychological investigation.</div><div class="pi-tags"><span class="pi-tag">Visual Novel</span><span class="pi-tag">Psychological</span><span class="pi-tag">Detective</span></div><div class="pi-foot"><span class="pi-yr">2019</span><div class="pi-arr">→</div></div></div>
+    </div>
+
+  </div>
+</div>
+</main>
+
+<!-- DETAIL OVERLAY — pushes to history so back button closes it -->
+<div class="detail-ov" id="dov">
+  <div class="d-hero" id="dh">
+    <div class="d-hero-ov"></div>
+    <button class="d-close" onclick="closeD()">✕</button>
+    <div class="d-hero-content">
+      <div class="d-genre" id="dgen"></div>
+      <h2 class="d-title" id="dtit"></h2>
+      <div class="d-role" id="drol"></div>
+    </div>
+  </div>
+  <div class="d-body">
+    <div class="d-specs" id="dsp"></div>
+    <div class="d-sh">OVERVIEW</div><p class="d-p" id="doverview"></p>
+    <div class="d-sh">DESIGN GOALS</div><p class="d-p" id="dgoals"></p>
+    <div class="d-sh">GAME MECHANICS</div><div class="mech-grid" id="dmechs"></div>
+    <div class="d-sh">TOOLS USED</div><p class="d-p" id="dtools"></p>
+    <div class="d-sh">PROCESS</div><p class="d-p" id="dprocess"></p>
+    <div class="d-links" id="dlnks"></div>
+  </div>
+</div>
+
+<footer><div class="f-copy">© 2024 SAI BHARGAV. ALL RIGHTS RESERVED.</div><div class="f-logo">SB</div><div class="f-copy">GAME DESIGNER</div></footer>
+<script src="../assets/shared.js"></script>
+<script>
+document.getElementById('ham').onclick=()=>document.getElementById('mobnav').classList.toggle('open');
+function filt(g,btn){
+  document.querySelectorAll('.fb').forEach(b=>b.classList.remove('on'));btn.classList.add('on');
+  document.querySelectorAll('.pc').forEach(c=>{c.style.display=(g==='all'||c.dataset.g===g)?'':'none';});
+}
+const PD={
+  hotel:{genre:'Management Simulation',title:"HOTEL LUXE INN: MANAGER'S CHALLENGE",role:"// Master's Project — Lead Designer",year:'2024',platform:'PC',engine:'Unity 3D',type:'Serious Game',img:'LuxeInn.png',ytId:'xCHTsjbmJTY',
+    overview:"A serious game putting you in the shoes of a busy hotel manager. Through a series of timed tasks across reservations, room service, kitchen management and dining — all about efficient time management and hospitality skills. Master's thesis: An approach to develop a serious game in hospitality addressing the challenges faced by a hotel manager.",
+    goals:"(1) Replicate real hotel management pressure through meaningful time constraints. (2) Teach resource allocation through gameplay rather than instruction. (3) Provide immediate feedback loops that reinforce correct management decisions. (4) Be genuinely engaging while remaining pedagogically effective.",
+    mechs:[{i:'⏱️',n:'TIME MANAGEMENT',d:'Prioritize and juggle multiple hotel tasks simultaneously with real-time deadlines.'},{i:'🏨',n:'MULTI-DEPARTMENT',d:'Manage reservations, room service, kitchen, and dining as interconnected systems.'},{i:'📊',n:'EDUCATIONAL FEEDBACK',d:'Real-time performance scoring teaches efficient hotel management principles.'},{i:'🎯',n:'TASK PRIORITIZATION',d:'Assess urgency and importance of competing tasks to maximize hotel performance.'}],
+    tools:'Unity 3D, Adobe Photoshop (UI), Microsoft Excel (balance), Google Suite (GDD), Trello (project management)',
+    process:"Phase 1 — Research: Literature review on serious games in hospitality. Phase 2 — GDD: Full design documentation covering all mechanics, tasks, and scoring. Phase 3 — Prototype: Grey box Unity prototype to test core task loop timing. Phase 4 — Iteration: 4 playtest sessions with adjustments to timing and task complexity. Phase 5 — Polish: UI pass, audio integration, and performance optimization.",
+    links:[{l:'▶ Gameplay Video',h:'https://youtu.be/xCHTsjbmJTY'},{l:'⬇ Download Build',h:'https://drive.google.com/file/d/1gxt_WkotQk0s4rO7OJoQ0ZQs16-QeoB2/view'},{l:'📄 PDF',h:'https://drive.google.com/file/d/1cCnpSW-y58CAdkyc66Zq5skm8AUJRFPB/view'}]},
+  evil:{genre:'FPS Fantasy Adventure',title:'EVIL LEGACY',role:'// Course Project: Rational Design',year:'2023',platform:'PC',engine:'Unreal Engine',type:'FPS Game',img:'Evillegacy.png',ytId:'Bc49S2FR3qk',
+    overview:"A fantasy action-adventure FPS through a mystical forest. Play as a young wizard — dark wizard Zephyrus used dark magic to corrupt the magical creatures of the forest. Using your wand and four unique magical abilities, defeat the corrupted creatures and end Zephyrus's evil legacy.",
+    goals:"(1) Design four distinct spells each with a unique strategic role. (2) Create meaningful resource management through spell cooldowns. (3) Build a progressive combat difficulty curve that teaches each spell before requiring combined use.",
+    mechs:[{i:'⚡',n:'DIFFINDO (LIGHTNING)',d:'Causes lightning bolts to strike enemies — reliable constant damage over time.'},{i:'🛡️',n:'PROTEGO (DEFENSE)',d:'Creates a temporary shield blocking attacks. Limited duration requires tactical use.'},{i:'❄️',n:'IMPEDIMENTA (FREEZE)',d:'Freezes enemies while dealing damage — great for crowd control or escape.'},{i:'🔥',n:'AVADA KEDAVRA (FIREBALL)',d:'Powerful burst damage fireball — high cooldown, most devastating spell.'}],
+    tools:'Unreal Engine (gameplay, environment, animations), Autodesk Maya (props), Adobe Photoshop (textures, UI), PureRef (visual references)',
+    process:"Phase 1 — Concept: Defined the four-spell system. Phase 2 — Blockout: Forest environment blockout for navigation testing. Phase 3 — Mechanic Implementation: Each spell via Unreal Blueprints with tuned cooldowns. Phase 4 — Enemy Design: Archetypes requiring specific spells. Phase 5 — Polish: Particle effects, ambient audio, lighting.",
+    links:[{l:'▶ Gameplay Video',h:'https://youtu.be/Bc49S2FR3qk'},{l:'⬇ Download Build',h:'https://drive.google.com/file/d/1mZhXWIEAcjxdo7sylQUF38PTih2l43ry/view'},{l:'📄 PDF',h:'https://drive.google.com/file/d/1_dgZ5gs1giCE4TAaE5sad564O77vFCdE/view'}]},
+  escape:{genre:'Stealth Adventure',title:'ESCAPE HUNT',role:'// Course Project: Group Project Solo',year:'2023',platform:'PC',engine:'Unity 3D',type:'Stealth Game',img:'Escapehunt.png',ytId:'lqwcb-ts59o4',
+    overview:"Players take on the role of a Box trapped in an ominous warehouse filled with guards and obstacles. Objective: escape without getting caught. Navigate the environment, uncover clues, and find the path to freedom.",
+    goals:"(1) Design a stealth sandbox where observing the environment rewards the player before acting. (2) Guard AI patterns that feel predictable enough to learn but dynamic enough to keep tension. (3) Environmental storytelling through prop placement guides the player without explicit UI. (4) Solo delivery from a group project brief — full-cycle production.",
+    mechs:[{i:'👁️',n:'GUARD PATTERNS',d:'Study and memorize enemy patrol routes to find safe movement windows.'},{i:'🔍',n:'CLUE DISCOVERY',d:'Hidden clues throughout the warehouse progressively unlock the escape path.'},{i:'🎭',n:'STEALTH NAVIGATION',d:'Use vents, crates, and cover to stay out of sight across multiple levels.'},{i:'🧩',n:'ENVIRONMENTAL PUZZLES',d:'Interact with environment to create distractions, open locked areas, or bypass guards.'}],
+    tools:'Unity 3D, C# (guard AI, player controller), Adobe Photoshop (texturing), Unity NavMesh (enemy pathfinding)',
+    process:"Phase 1 — Level Layout: Paper design with guard zones and clue placement. Phase 2 — AI: Guard patrol AI using NavMesh with detection cone logic. Phase 3 — Player Systems: Box controller with crouching, vents, and object pickup. Phase 4 — Playtesting: 6 solo iterations adjusting detection range and patrol timing. Phase 5 — Polish: Audio cues for guard awareness states and atmospheric ambience.",
+    links:[{l:'▶ Gameplay Video',h:'https://youtu.be/lqwcb-ts59o4'},{l:'⬇ Download Build',h:'https://drive.google.com/file/d/1FJ2zDueHOUzt0yvAL3HygzUFwdICHxpe/view'},{l:'📄 PDF',h:'https://drive.google.com/file/d/1aFjG5gJZ_TiuN1Neq0DVqTeJdY-ZgVEf/view'}]},
+  dystopian:{genre:'Action Third-Person Shooter',title:'DYSTOPIAN',role:'// Course Project: Game Mechanics',year:'2022',platform:'PC',engine:'Unreal Engine',type:'Action TPS',img:'Dystopian.png',ytId:'FyTiHAGFq24',
+    overview:"Set in Exeter Cyber City 2055, Nemesis planet. Play as Suhan, a military scientist defending his city against Iroria7X robots using a secret superpower suit. Four original mechanics each inspired by an existing title but redesigned for this context.",
+    goals:"Design four original, functional mechanics each with a clear design purpose: bullet-time aiming (Max Payne), physics-based throwing (Control), multi-jump with environmental combat (original), signature long-range weapon. Each mechanic: distinct, complementary, supported by level layout.",
+    mechs:[{i:'🐌',n:"SNAIL'S PACE",d:"Time slows when aiming at an enemy — inspired by Max Payne's Bullet Time."},{i:'🪃',n:'FLING',d:"Pick up highlighted objects and launch at enemies — inspired by Control's Launch."},{i:'⬆️',n:'DUAL JUMP + FALL BLAST',d:'Double jump + blast radius on landing near enemies, sending them flying.'},{i:'🔫',n:'LASER RIFLE',d:'30-round precision weapon, effective at long and medium range.'}],
+    tools:'Unreal Engine (all Blueprints), Adobe Photoshop (UI, HUD), PureRef (visual reference), Autodesk Maya (props)',
+    process:"Phase 1 — Research: Analyzed source mechanics from Max Payne and Control. Phase 2 — GDD: Documented each mechanic's rules and player fantasy. Phase 3 — Grey-box: Tested mechanic interactions in contained space. Phase 4 — Mechanic Polish: Tuned all values via playtest data. Phase 5 — Level Integration: Combat scenarios requiring players to naturally discover each mechanic.",
+    links:[{l:'▶ Gameplay Video',h:'https://youtu.be/FyTiHAGFq24'},{l:'⬇ Download Build',h:'https://drive.google.com/file/d/1RZvYpeBlXySbbnQ0K2I9rpiBKdAV6Mf_/view'},{l:'📄 PDF',h:'https://drive.google.com/file/d/1iH0n7Onz4sUQsB3bm7xy0FhqJpN5Pwxs/view'}]},
+  hollyhill:{genre:'Mission Design',title:'HOLLYHILL PENINSULA ISLAND',role:'// Course Project: Mission Design',year:'2023',platform:'PC',engine:'Unreal Engine',type:'Open World',img:'Missiondesign.png',ytId:'CTgqu1qcPm8',
+    overview:"An open-world mission design project set on a uniquely crafted peninsula island. Explores narrative-driven gameplay through carefully constructed quests, environmental storytelling, and world-building.",
+    goals:"(1) Multi-objective mission structure supporting both linear and exploratory approaches. (2) A world where environment itself tells the island's story. (3) Balance guided and emergent gameplay rewarding both completionists and casual players. (4) Demonstrate spatial hierarchy and player orientation at open-world scale.",
+    mechs:[{i:'🗺️',n:'MISSION FLOW',d:'Quest chains that escalate in complexity and emotional resonance.'},{i:'🌍',n:'ENV. STORYTELLING',d:'Island communicates history and danger through thoughtful layout and props.'},{i:'⚖️',n:'PACING',d:'Carefully balanced challenge escalation from introduction to finale.'},{i:'🏆',n:'EXPLORATION REWARDS',d:'Optional discovery zones with loot and narrative details for completionists.'}],
+    tools:'Unreal Engine 5 (terrain, lighting), Autodesk Maya (custom props), PureRef (island references), Excel (mission beat planning)',
+    process:"Phase 1 — Island Concept: Geography with distinct biomes and visual landmarks. Phase 2 — Mission Structure: Flowchart with primary, optional, and fail-state objectives. Phase 3 — Blockout: Island geometry populated with placeholder actors. Phase 4 — Narrative Layer: Ruins, journals, visual environmental history. Phase 5 — Playtest: 3 sessions focused on whether players felt lost; adjusted signposting.",
+    links:[{l:'▶ Gameplay Video',h:'https://youtu.be/CTgqu1qcPm8'},{l:'⬇ Download Build',h:'https://drive.google.com/file/d/19kRduzNoeP3HkQ5Go0-bJIzyJyW86dBL/view'}]},
+  persona:{genre:'Visual Novel',title:'PERSONA',role:'// Lead Designer',year:'2019',platform:'PC',engine:"Ren'Py / Unity",type:'Visual Novel',img:'Persona.png',ytId:'4iclQtB6GZg',
+    overview:"A dark psychological detective visual novel. A woman confesses to triple homicide — no bodies found. As the Detective, navigate a twisting investigation. Your intelligence and intuition determine your outcome. Your Fear is your killer. Showcased at NASSCOM/IGDC December 2019.",
+    goals:"(1) Branching narrative where choices feel genuinely consequential. (2) Fear mechanic creating player-facing psychological pressure. (3) Mystery with enough red herrings to support 3+ playthroughs. (4) Demonstrate Lead Designer capability — coordinating writing, visual design, and narrative systems.",
+    mechs:[{i:'🔎',n:'INVESTIGATION',d:'Player decisions during interrogation and evidence-gathering shape the narrative and ending.'},{i:'🧠',n:'PSYCHOLOGICAL PROFILING',d:"Analyze suspect's behavior, contradictions, and emotional cues to build your case."},{i:'😨',n:'FEAR MECHANIC',d:"Player's in-game fear state affects available dialogue options and story branches."},{i:'📁',n:'EVIDENCE SYSTEM',d:'Collect and correlate evidence to unlock new lines of questioning.'}],
+    tools:"Ren'Py (scripting engine), Adobe Photoshop (character art, backgrounds), Audacity (audio editing), Google Docs (script and branching dialogue)",
+    process:"Phase 1 — Script: Full narrative with all branching paths in a decision tree. Phase 2 — Art Direction: Character visual styles and background design. Phase 3 — Implementation: All dialogue branches and flags in Ren'Py. Phase 4 — Sound: Ambient audio and music for psychological tension. Phase 5 — Showcase: Presented at NASSCOM/IGDC December 2019.",
+    links:[{l:'▶ Gameplay Video',h:'https://youtu.be/4iclQtB6GZg'},{l:'⬇ Download Build',h:'https://drive.google.com/file/d/1B21E-yNMJtBQ2Qxxz-hWE811SlbaYS1s/view'},{l:'📊 Presentation',h:'https://docs.google.com/presentation/d/1FkqoJvK-2WcipXxYPn1XWfpDjjqsPriM/edit'}]}
+};
+
+let activeKey = null;
+
+function openD(k){
+  const d=PD[k];if(!d)return;
+  activeKey = k;
+  document.getElementById('dh').innerHTML=`
+    <iframe class="d-hero-vid" src="https://www.youtube.com/embed/${d.ytId}?autoplay=1&mute=1&loop=1&playlist=${d.ytId}&controls=0&showinfo=0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    <img class="d-hero-img" src="${d.img}" alt="${d.title}" onerror="this.style.display='none'">
+    <div class="d-hero-ov"></div>
+    <button class="d-close" onclick="closeD()">✕</button>
+    <div class="d-hero-content">
+      <div class="d-genre">${d.genre}</div>
+      <h2 class="d-title">${d.title}</h2>
+      <div class="d-role">${d.role}</div>
+    </div>`;
+  document.getElementById('dsp').innerHTML=`<div class="dsp"><div class="dspk">Year</div><div class="dspv">${d.year}</div></div><div class="dsp"><div class="dspk">Platform</div><div class="dspv">${d.platform}</div></div><div class="dsp"><div class="dspk">Engine</div><div class="dspv">${d.engine}</div></div><div class="dsp"><div class="dspk">Type</div><div class="dspv">${d.type}</div></div>`;
+  document.getElementById('doverview').textContent=d.overview;
+  document.getElementById('dgoals').textContent=d.goals;
+  document.getElementById('dtools').textContent=d.tools;
+  document.getElementById('dprocess').textContent=d.process;
+  document.getElementById('dmechs').innerHTML=d.mechs.map(m=>`<div class="mech"><div class="mi">${m.i}</div><div><div class="mn">${m.n}</div><div class="md">${m.d}</div></div></div>`).join('');
+  document.getElementById('dlnks').innerHTML=d.links.map(l=>`<a href="${l.h}" target="_blank" class="btn btn-g btn-sm">${l.l}</a>`).join('');
+  document.getElementById('dov').classList.add('open');
+  document.body.classList.add('locked');
+  document.getElementById('dov').scrollTop=0;
+  /* push history state — back button will close detail, not navigate away */
+  history.pushState({detail:k},'','#'+k);
+}
+
+function closeD(){
+  document.getElementById('dov').classList.remove('open');
+  document.body.classList.remove('locked');
+  activeKey = null;
+  /* remove hash without pushing another history entry */
+  if(location.hash) history.replaceState(null,'',location.pathname+location.search);
+}
+
+/* back button support */
+window.addEventListener('popstate',function(e){
+  if(document.getElementById('dov').classList.contains('open')){
+    document.getElementById('dov').classList.remove('open');
+    document.body.classList.remove('locked');
+    activeKey = null;
+  }
+});
+
+/* ESC closes detail */
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeD();});
+/* click overlay to close */
+document.getElementById('dov').addEventListener('click',function(e){if(e.target===this)closeD();});
+
+/* open from URL hash on page load */
+window.addEventListener('load',function(){
+  const hash=location.hash.replace('#','');
+  if(hash && PD[hash]) openD(hash);
+});
+</script>
+</body>
+</html>

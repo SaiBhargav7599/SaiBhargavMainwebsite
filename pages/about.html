@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>About — Sai Bhargav</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/shared.css">
+<style>
+.about-layout{display:grid;grid-template-columns:320px 1fr;gap:64px;align-items:start}
+.profile-card{position:sticky;top:88px;background:var(--card);border:1px solid var(--bdr);padding:32px;text-align:center}
+.avatar{width:130px;height:130px;border-radius:50%;background:linear-gradient(135deg,var(--c),var(--c3));margin:0 auto 18px;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:2.8rem;color:var(--bg);border:3px solid var(--c);box-shadow:0 0 28px rgba(0,245,255,.3)}
+.pname{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:3px;color:#fff}
+.prole{font-family:'Space Mono',monospace;font-size:.6rem;color:var(--c);letter-spacing:2px;margin-top:5px}
+.ploc{font-size:.88rem;color:var(--dim);margin-top:10px}
+.slinks{display:flex;flex-direction:column;gap:9px;margin-top:22px}
+.sl{padding:9px 16px;border:1px solid var(--bdr);font-family:'Space Mono',monospace;font-size:.6rem;color:var(--dim);text-decoration:none;letter-spacing:1px;transition:all .3s;display:flex;align-items:center;gap:9px;clip-path:polygon(4px 0%,100% 0%,calc(100% - 4px) 100%,0% 100%)}
+.sl:hover{border-color:var(--c);color:var(--c);background:rgba(0,245,255,.05)}
+.tl{list-style:none;padding:0}
+.tl-item{position:relative;padding:0 0 28px 28px;border-left:1px solid var(--bdr)}
+.tl-item:last-child{padding-bottom:0}
+.tl-dot{position:absolute;left:-5px;top:4px;width:10px;height:10px;border-radius:50%;background:var(--c);box-shadow:0 0 10px var(--c)}
+.tl-yr{font-family:'Space Mono',monospace;font-size:.58rem;color:var(--c);letter-spacing:2px;margin-bottom:5px}
+.tl-r{font-family:'Bebas Neue',sans-serif;font-size:1.25rem;letter-spacing:1px;color:#fff;margin-bottom:3px}
+.tl-co{font-family:'Space Mono',monospace;font-size:.62rem;color:var(--c2)}
+.tl-d{font-size:.88rem;color:var(--dim);margin-top:7px;line-height:1.7}
+.skill-bar-wrap{margin-bottom:18px}
+.skill-label{font-family:'Space Mono',monospace;font-size:.62rem;color:var(--txt);letter-spacing:1px;margin-bottom:7px;display:flex;justify-content:space-between}
+.skill-bg{width:100%;height:3px;background:var(--bdr)}
+.skill-fill{height:100%;background:linear-gradient(to right,var(--c),var(--c3));transition:width 1.6s ease;width:0}
+.about-h3{font-family:'Bebas Neue',sans-serif;font-size:1.9rem;letter-spacing:2px;color:#fff;margin:38px 0 16px}
+.about-p{font-size:1.02rem;color:var(--dim);line-height:1.9;margin-bottom:13px}
+@media(max-width:900px){.about-layout{grid-template-columns:1fr}.profile-card{position:static}}
+</style>
+</head>
+<body>
+<div id="cur"></div><div id="crng"></div><canvas id="bgc"></canvas><div id="pt"></div>
+<nav>
+  <a href="../index.html" class="nav-logo">SB</a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="about.html" class="act">About</a></li>
+    <li><a href="cv.html">CV</a></li>
+    <li><a href="https://saibhargav7599.github.io/operation-blackout/#goal" target="_blank">Level Design</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="certifications.html">Certifications</a></li>
+    <li><a href="cinematics.html">Cinematics</a></li>
+    <li><a href="artworks.html">3D Artworks</a></li>
+  </ul>
+  <button class="ham" id="ham"><span></span><span></span><span></span></button>
+</nav>
+<div id="mobnav"><a href="../index.html">Home</a><a href="about.html">About</a><a href="cv.html">CV</a><a href="https://saibhargav7599.github.io/operation-blackout/#goal" target="_blank">Level Design</a><a href="projects.html">Projects</a><a href="certifications.html">Certifications</a><a href="cinematics.html">Cinematics</a><a href="artworks.html">3D Artworks</a></div>
+
+<main>
+<div class="page-hero">
+  <div class="page-hero-eye">About Me</div>
+  <h1 class="page-hero-h1">SAI<br>BHARGAV</h1>
+  <p class="page-hero-sub">Game Designer — MA Graduate — Crafting immersive worlds with passion and precision.</p>
+</div>
+<div class="wrap">
+  <div class="about-layout">
+    <!-- Profile sidebar -->
+    <div class="rev-l">
+      <div class="profile-card">
+        <img src="../pages/mypicture1.jpeg" alt="Sai Bhargav" style="width:130px;height:130px;border-radius:50%;object-fit:cover;border:3px solid var(--c);box-shadow:0 0 28px rgba(0,245,255,.3);margin:0 auto 18px;display:block" onerror="this.outerHTML='<div style="width:130px;height:130px;border-radius:50%;background:linear-gradient(135deg,var(--c),var(--c3));margin:0 auto 18px;display:flex;align-items:center;justify-content:center;font-family:Bebas Neue,sans-serif;font-size:2.8rem;color:var(--bg)">SB</div>'">
+        <div class="pname">SAI BHARGAV</div>
+        <div class="prole">// Game Designer</div>
+        <div class="ploc">📍 United Kingdom</div>
+        <div class="slinks">
+          <a href="https://www.linkedin.com/in/saibhargav7599" target="_blank" class="sl">🔗 LinkedIn</a>
+          <a href="http://sai_bhargav.artstation.com"          target="_blank" class="sl">🎨 ArtStation</a>
+          <a href="https://youtu.be/WuV2wXUhXF0"              target="_blank" class="sl">▶ YouTube</a>
+          <a href="https://saibhargav7599.wixsite.com/gamedesign" target="_blank" class="sl">🌐 Old Portfolio</a>
+          <a href="mailto:saibhargav7599@gmail.com"                             class="sl">✉ Email Me</a>
+        </div>
+        <div style="margin-top:22px"><a href="cv.html" class="btn btn-p btn-sm" style="width:100%;justify-content:center">View CV →</a></div>
+      </div>
+    </div>
+
+    <!-- Main content -->
+    <div>
+      <div class="rev">
+        <div class="sec-label">Summary</div>
+        <h2 class="about-h3" style="margin-top:0">WHO I AM</h2>
+        <p class="about-p">Dynamic Game Designer with over two years of experience, specializing in balancing gameplay mechanics, crafting immersive levels, and leveraging analytics to enhance player engagement and retention.</p>
+        <p class="about-p">Successfully contributed to two titles achieving <strong style="color:var(--c)">50,000+ downloads on Google Play Store</strong>, driving significant revenue. Skilled in VR/AR development, combining artistic vision with practical execution. A strong collaborator, adept at delivering high-quality results under tight deadlines.</p>
+        <p class="about-p">I work to evoke emotion and strive for perfection. Highly motivated and innovative, I leverage creative skills and technical expertise to craft captivating and immersive gaming experiences.</p>
+      </div>
+
+      <div class="rev">
+        <h2 class="about-h3">EXPERIENCE</h2>
+        <ul class="tl">
+          <li class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-yr">SEP 2023 – DEC 2023</div>
+            <div class="tl-r">Game Designer</div>
+            <div class="tl-co">NeoVene Limited · Internship · Middlesbrough, UK · Remote</div>
+            <div class="tl-d">Designed and developed an educational game focused on healthcare, improving user's understanding of healthcare practices through gamification. Created comprehensive GDD and supplementary design materials. Planned and prototyped levels to deliver engaging and pedagogically effective gameplay. Developed AR/VR levels praised for intuitive navigation and player immersion. Delivered a functional game prototype within a 4-month period.</div>
+          </li>
+          <li class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-yr">NOV 2021 – JUL 2022</div>
+            <div class="tl-r">Level Designer</div>
+            <div class="tl-co">CYMAX Infotainment · Full-time · Hyderabad, India · On-site</div>
+            <div class="tl-d">Utilized Unity & Unreal, incorporating interactions and animations to create dynamic immersive environments. Executed full-cycle level planning — concept to implementation — leveraging grey box prototyping. Developed a 360-degree cinematic experience for immersive storytelling. Designed and balanced levels for Toilet Dash (50k+ Play Store downloads) and Mega SUV Car Ramp.</div>
+          </li>
+          <li class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-yr">MAY 2021 – OCT 2021</div>
+            <div class="tl-r">Junior Game Designer</div>
+            <div class="tl-co">Flick Games Official · Full-time · Hyderabad, India · Remote</div>
+            <div class="tl-d">Contributed to game design documentation, mechanic iteration, and feature prototyping as part of a small agile team delivering mobile game experiences.</div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="rev">
+        <h2 class="about-h3">EDUCATION</h2>
+        <ul class="tl">
+          <li class="tl-item">
+            <div class="tl-dot" style="background:var(--c2);box-shadow:0 0 10px var(--c2)"></div>
+            <div class="tl-yr">2022 – 2024</div>
+            <div class="tl-r">MA Game Design (with advanced practice)</div>
+            <div class="tl-co">Teesside University · Middlesbrough, UK</div>
+            <div class="tl-d">Credits: 120/120. Specialising in game mechanics, level design, narrative design, and serious games. Final project: Hotel Luxe Inn: Manager's Challenge — a management simulation serious game addressing hospitality challenges.</div>
+          </li>
+          <li class="tl-item">
+            <div class="tl-dot" style="background:var(--c2);box-shadow:0 0 10px var(--c2)"></div>
+            <div class="tl-yr">2017 – 2021</div>
+            <div class="tl-r">Bachelor's in Multimedia (Gaming)</div>
+            <div class="tl-co">Jawaharlal Nehru Technological University · Hyderabad, India</div>
+            <div class="tl-d">Four-year undergraduate degree covering game development, multimedia production, 3D modelling, and interactive media design. Grade: 72.82</div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="rev" id="skill-section">
+        <h2 class="about-h3">SKILLS</h2>
+        <div class="skill-bar-wrap"><div class="skill-label"><span>Gameplay Mechanics Design</span><span>Advanced</span></div><div class="skill-bg"><div class="skill-fill" data-w="92%"></div></div></div>
+        <div class="skill-bar-wrap"><div class="skill-label"><span>Level Design</span><span>Advanced</span></div><div class="skill-bg"><div class="skill-fill" data-w="95%"></div></div></div>
+        <div class="skill-bar-wrap"><div class="skill-label"><span>Unity 3D</span><span>Advanced</span></div><div class="skill-bg"><div class="skill-fill" data-w="90%"></div></div></div>
+        <div class="skill-bar-wrap"><div class="skill-label"><span>Unreal Engine 5</span><span>Advanced</span></div><div class="skill-bg"><div class="skill-fill" data-w="88%"></div></div></div>
+        <div class="skill-bar-wrap"><div class="skill-label"><span>Prototyping & GDD</span><span>Advanced</span></div><div class="skill-bg"><div class="skill-fill" data-w="90%"></div></div></div>
+        <div class="skill-bar-wrap"><div class="skill-label"><span>Autodesk Maya</span><span>Proficient</span></div><div class="skill-bg"><div class="skill-fill" data-w="72%"></div></div></div>
+        <div class="skill-bar-wrap"><div class="skill-label"><span>Adobe Premiere Pro</span><span>Proficient</span></div><div class="skill-bg"><div class="skill-fill" data-w="74%"></div></div></div>
+        <div class="skill-bar-wrap"><div class="skill-label"><span>VR/AR Development</span><span>Proficient</span></div><div class="skill-bg"><div class="skill-fill" data-w="68%"></div></div></div>
+      </div>
+
+      <div class="rev" style="margin-top:44px">
+        <a href="cv.html" class="btn btn-p" style="margin-right:12px">View Full CV</a>
+        <a href="../index.html#contact" class="btn btn-g">Contact Me</a>
+      </div>
+    </div>
+  </div>
+</div>
+</main>
+<footer><div class="f-copy">© 2024 SAI BHARGAV. ALL RIGHTS RESERVED.</div><div class="f-logo">SB</div><div class="f-copy">GAME DESIGNER</div></footer>
+<script src="../assets/shared.js"></script>
+<script>
+document.getElementById('ham').onclick=()=>document.getElementById('mobnav').classList.toggle('open');
+const sobs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.querySelectorAll('.skill-fill').forEach(b=>{b.style.width=b.dataset.w;});});},{threshold:.3});
+document.querySelectorAll('#skill-section').forEach(s=>sobs.observe(s));
+</script>
+</body>
+</html>
