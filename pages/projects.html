@@ -227,7 +227,7 @@ function openD(k){
   const d=PD[k];if(!d)return;
   activeKey = k;
   document.getElementById('dh').innerHTML=`
-    <img class="d-hero-img" src="${d.img}" alt="${d.title}" onerror="this.style.display='none'">
+    <iframe src="https://www.youtube.com/embed/${d.ytId}?autoplay=1&mute=1&loop=1&playlist=${d.ytId}&controls=0&showinfo=0" allow="autoplay; encrypted-media" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:none;filter:brightness(.32)"></iframe>
     <div class="d-hero-ov"></div>
     <button class="d-close" onclick="closeD()">✕</button>
     <div class="d-hero-content">
