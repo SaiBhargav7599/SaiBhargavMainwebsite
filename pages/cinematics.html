@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cinematics — Sai Bhargav</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/shared.css">
+<style>
+.cine-big{border:1px solid var(--bdr);background:var(--card);overflow:hidden;margin-bottom:3px;transition:border-color .3s}
+.cine-big:hover{border-color:var(--c)}
+.vt{width:100%;padding-top:52%;position:relative;overflow:hidden}
+.vt iframe{position:absolute;inset:0;width:100%;height:100%;border:none}
+.vi{padding:26px 30px}
+.vi-t{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:2px;margin-bottom:8px}
+.vi-s{font-size:.92rem;color:var(--dim);line-height:1.7;max-width:700px}
+.vi-tags{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.vi-tag{padding:3px 10px;border:1px solid var(--bdr);font-family:'Space Mono',monospace;font-size:.56rem;color:var(--dim);letter-spacing:1px}
+.cine-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-top:3px}
+.cine-sm{border:1px solid var(--bdr);background:var(--card);overflow:hidden;transition:border-color .3s,transform .3s}
+.cine-sm:hover{border-color:var(--c);transform:translateY(-3px)}
+.vt-sm{width:100%;padding-top:56.25%;position:relative;overflow:hidden}
+.vt-sm iframe{position:absolute;inset:0;width:100%;height:100%;border:none}
+.cine-footer{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px;align-items:center;padding-top:24px;border-top:1px solid var(--bdr)}
+@media(max-width:860px){.cine-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div id="cur"></div><div id="crng"></div><canvas id="bgc"></canvas><div id="pt"></div>
+<nav>
+  <a href="../index.html" class="nav-logo">SB</a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="cv.html">CV</a></li>
+    <li><a href="https://saibhargav7599.github.io/operation-blackout/#goal" target="_blank">Level Design</a></li>
+    <li><a href="projects.html">Projects</a></li><li><a href="certifications.html">Certifications</a></li>
+    <li><a href="cinematics.html" class="act">Cinematics</a></li>
+    <li><a href="artworks.html">3D Artworks</a></li>
+  </ul>
+  <button class="ham" id="ham"><span></span><span></span><span></span></button>
+</nav>
+<div id="mobnav"><a href="../index.html">Home</a><a href="about.html">About</a><a href="cv.html">CV</a><a href="https://saibhargav7599.github.io/operation-blackout/#goal" target="_blank">Level Design</a><a href="projects.html">Projects</a><a href="certifications.html">Certifications</a><a href="cinematics.html">Cinematics</a><a href="artworks.html">3D Artworks</a></div>
+
+<main>
+<div class="page-hero">
+  <div class="page-hero-eye">Video Work</div>
+  <h1 class="page-hero-h1">CINEMATICS</h1>
+  <p class="page-hero-sub">Sharing my journey into the world of cinematic storytelling. Projects built in Unreal Engine — cinematic short films as final products, exploring basic particle systems, rigged asset integration, and Sequencer animation.</p>
+</div>
+<div class="wrap">
+  <!-- Video 1 BIG -->
+  <div class="cine-big rev">
+    <div class="vt"><iframe src="https://www.youtube.com/embed/MtHFH9TKUNU" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" title="Turtles of the River"></iframe></div>
+    <div class="vi">
+      <div class="vi-t">TURTLE'S OF THE RIVER</div>
+      <div class="vi-s">A cinematic short film built in Unreal Engine. This project focused on learning basic particle systems, environment design, and the fundamentals of cinematic camera work within Sequencer. The turtle movement animations were rigged assets integrated into the scene.</div>
+      <div class="vi-tags"><span class="vi-tag">Unreal Engine</span><span class="vi-tag">Cinematic</span><span class="vi-tag">Particle Systems</span><span class="vi-tag">Rigged Assets</span><span class="vi-tag">Sequencer</span></div>
+    </div>
+  </div>
+  <div class="cine-grid">
+    <!-- Video 2 -->
+    <div class="cine-sm rev d1">
+      <div class="vt-sm"><iframe src="https://www.youtube.com/embed/H4q071MfOUA" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" title="Tread"></iframe></div>
+      <div style="padding:20px">
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:2px;margin-bottom:6px">TREAD</div>
+        <div style="font-size:.86rem;color:var(--dim);margin-bottom:10px">Cinematic short film exploring vehicle animation, environment lighting, and atmospheric composition in Unreal Engine Sequencer.</div>
+        <div style="display:flex;gap:7px;flex-wrap:wrap">
+          <span style="padding:3px 9px;border:1px solid var(--bdr);font-family:'Space Mono',monospace;font-size:.54rem;color:var(--dim)">Unreal Engine</span>
+          <span style="padding:3px 9px;border:1px solid var(--bdr);font-family:'Space Mono',monospace;font-size:.54rem;color:var(--dim)">Cinematic</span>
+          <span style="padding:3px 9px;border:1px solid var(--bdr);font-family:'Space Mono',monospace;font-size:.54rem;color:var(--dim)">Sequencer</span>
+        </div>
+      </div>
+    </div>
+    <!-- Video 3 -->
+    <div class="cine-sm rev d2">
+      <div class="vt-sm"><iframe src="https://www.youtube.com/embed/R0u9nKQDk5s" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" title="Drivers Paradise"></iframe></div>
+      <div style="padding:20px">
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:2px;margin-bottom:6px">DRIVERS PARADISE</div>
+        <div style="font-size:.86rem;color:var(--dim);margin-bottom:10px">A cinematic showcase of vehicle models, chase sequences, and dynamic lighting in Unreal Engine. Integration of animated assets and camera path sequencing.</div>
+        <div style="display:flex;gap:7px;flex-wrap:wrap">
+          <span style="padding:3px 9px;border:1px solid var(--bdr);font-family:'Space Mono',monospace;font-size:.54rem;color:var(--dim)">Unreal Engine</span>
+          <span style="padding:3px 9px;border:1px solid var(--bdr);font-family:'Space Mono',monospace;font-size:.54rem;color:var(--dim)">Animation</span>
+          <span style="padding:3px 9px;border:1px solid var(--bdr);font-family:'Space Mono',monospace;font-size:.54rem;color:var(--dim)">Cinematics</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cine-footer rev">
+    <div style="flex:1">
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:2px;color:#fff;margin-bottom:6px">YOUTUBE CHANNEL</div>
+      <p style="font-size:.9rem;color:var(--dim)">Subscribe for more gameplay reels, cinematic sequences, and game design content.</p>
+    </div>
+    <a href="https://youtu.be/WuV2wXUhXF0" target="_blank" class="btn btn-p">▶ View YouTube Channel</a>
+  </div>
+</div>
+</main>
+<footer><div class="f-copy">© 2024 SAI BHARGAV. ALL RIGHTS RESERVED.</div><div class="f-logo">SB</div><div class="f-copy">GAME DESIGNER</div></footer>
+<script src="../assets/shared.js"></script>
+<script>document.getElementById('ham').onclick=()=>document.getElementById('mobnav').classList.toggle('open');</script>
+</body>
+</html>
