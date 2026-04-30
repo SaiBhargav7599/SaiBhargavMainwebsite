@@ -37,8 +37,7 @@
   scrollbar-width:thin;scrollbar-color:var(--c) transparent}
 .detail-ov.open{opacity:1;pointer-events:all}
 .d-hero{position:relative;width:100%;padding-top:42%;overflow:hidden}
-.d-hero-vid{position:absolute;inset:0;width:100%;height:100%;border:none;filter:brightness(.32)}
-.d-hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.45)}
+.d-hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.5)}
 .d-hero-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(2,4,8,1) 0%,rgba(2,4,8,.5) 50%,transparent 100%)}
 .d-hero-content{position:absolute;bottom:36px;left:56px;right:56px;z-index:2}
 .d-close{position:absolute;top:16px;right:16px;z-index:10;width:44px;height:44px;background:rgba(2,4,8,.85);border:1px solid var(--bdr);color:var(--txt);font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s}
@@ -125,6 +124,25 @@
     </div>
 
   </div>
+
+  <!-- ══ BACHELOR'S PORTFOLIO VIDEO ══ -->
+  <div style="margin-top:72px;border-top:1px solid var(--bdr);padding-top:64px" class="rev">
+    <div style="font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:4px;color:var(--c);text-transform:uppercase;display:flex;align-items:center;gap:12px;margin-bottom:14px">
+      <span style="width:26px;height:1px;background:var(--c);display:inline-block"></span>
+      Bachelor's Portfolio
+    </div>
+    <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,4vw,3.6rem);letter-spacing:2px;line-height:1;margin-bottom:14px">BACHELOR'S WORK SHOWCASE</h2>
+    <p style="font-size:1rem;color:var(--dim);line-height:1.8;max-width:680px;margin-bottom:32px">A compilation of game design work produced during my Bachelor's in Multimedia (Gaming) at JNTUH — covering level design, game mechanics, 3D art, and interactive media projects.</p>
+    <div style="position:relative;width:100%;padding-top:56.25%;background:var(--card);border:1px solid var(--bdr);overflow:hidden">
+      <iframe
+        src="https://drive.google.com/file/d/1tF1qDk0hziEz5xnMhBN6EYUMhmJR7tAt/preview"
+        style="position:absolute;inset:0;width:100%;height:100%;border:none"
+        allow="autoplay"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+
 </div>
 </main>
 
@@ -209,7 +227,6 @@ function openD(k){
   const d=PD[k];if(!d)return;
   activeKey = k;
   document.getElementById('dh').innerHTML=`
-    <iframe class="d-hero-vid" src="https://www.youtube.com/embed/${d.ytId}?autoplay=1&mute=1&loop=1&playlist=${d.ytId}&controls=0&showinfo=0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     <img class="d-hero-img" src="${d.img}" alt="${d.title}" onerror="this.style.display='none'">
     <div class="d-hero-ov"></div>
     <button class="d-close" onclick="closeD()">✕</button>
